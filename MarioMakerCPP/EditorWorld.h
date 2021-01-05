@@ -12,6 +12,8 @@ namespace editor
 		std::unique_ptr<TileSelectorWindow> m_tileSelectorWindow = nullptr;
 		sf::Event m_event;
 
+		std::vector<universal::TileBase*> m_paintedObjects;
+
 		bool m_gameRunning = false;
 
 	public:
@@ -22,6 +24,8 @@ namespace editor
 		void render();
 
 		bool gameRunning();
+
+		void paint(const universal::TileBase* objectToPaint, const sf::Vector2i& position);
 	};
 }
 

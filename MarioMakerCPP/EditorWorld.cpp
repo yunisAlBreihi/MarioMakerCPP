@@ -1,4 +1,6 @@
 #include "EditorWorld.h"
+#include <iostream>
+#include "globals.h"
 
 namespace editor
 {
@@ -32,6 +34,12 @@ namespace editor
 		if (m_tileSelectorWindow != nullptr) {
 			m_tileSelectorWindow->eventHandler();
 		}
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
+			sf::Vector2i t_mousePos = globals::positionInWindow(sf::Mouse::getPosition(), &*m_window);
+			//std::cout << "Mouse X: " << t_mousePos.x << " Mouse Y: " << t_mousePos.y << std::endl;
+			paint(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+		}
 	}
 
 	void EditorWorld::render()
@@ -41,11 +49,26 @@ namespace editor
 		//Render things here
 		m_tileSelectorWindow->render(&*m_window);
 
+		for (const auto& t_paintedTile : m_paintedObjects) {
+			if (t_paintedTile != nullptr) {
+				t_paintedTile->render(&*m_window);
+			}
+		}
+
 		m_window->display();
 	}
 
 	bool EditorWorld::gameRunning()
 	{
 		return m_gameRunning;
+	}
+
+	void EditorWorld::paint(const universal::TileBase* objectToPaint, const sf::Vector2i& position)
+	{
+		if (objectToPaint != nullptr) {
+			universal::TileBase* t_tileCopy = new universal::TileBase(*objectToPaint);
+			t_tileCopy->setPosition(sf::Vector2f(position.x, position.y));
+			m_paintedObjects.push_back(t_tileCopy);
+		}
 	}
 }
