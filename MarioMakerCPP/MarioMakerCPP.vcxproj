@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EditorWorld.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TileBase.cpp" />
     <ClCompile Include="TileSelectorWindow.cpp" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="EditorWorld.h" />
     <ClInclude Include="globals.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="IEventHandler.h" />
     <ClInclude Include="IRender.h" />
     <ClInclude Include="TileBase.h" />

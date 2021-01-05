@@ -4,6 +4,8 @@
 
 namespace globals
 {
+	static const unsigned int TILE_SIZE = 32;
+
 	static const sf::Color GRAY = sf::Color(128, 128, 128, 255);
 	static const sf::Color UNHIGHLIGHTED_COLOR = sf::Color(0,0,0,255);
 	static const sf::Color HIGHLIGHTED_COLOR = sf::Color(255,0,0,255);

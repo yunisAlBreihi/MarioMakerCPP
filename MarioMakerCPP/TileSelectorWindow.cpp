@@ -10,8 +10,6 @@ namespace editor
 		m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(resolution.x, resolution.y), windowName);
 		m_window->setPosition(position);
 
-		const unsigned int t_tileSize = 64;
-		const unsigned int t_tileOffset = 5;
 		for (size_t j = 0; j < 10; j++) {
 			for (size_t i = 0; i < 2; i++)
 			{
@@ -22,8 +20,8 @@ namespace editor
 					else {
 						t_color = sf::Color::Green;
 					}
-				std::unique_ptr t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(i * t_tileSize + i * t_tileOffset, j * t_tileSize + j * t_tileOffset + t_tileOffset),
-					sf::Vector2f(t_tileSize, t_tileSize),
+				std::unique_ptr t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(i * globals::TILE_SIZE + i, j * globals::TILE_SIZE + j),
+					sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE),
 					t_color);
 				m_tiles.push_back(std::move(t_tile));
 			}

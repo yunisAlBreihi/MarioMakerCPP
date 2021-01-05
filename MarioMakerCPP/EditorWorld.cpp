@@ -14,6 +14,9 @@ namespace editor
 		m_tileSelectorWindow = std::make_unique<TileSelectorWindow>(sf::Vector2i(200, 720), 
 																	sf::Vector2i(position.x + resolution.x, position.y), 
 																	"Tile Selector");
+
+		m_grid = std::make_unique<universal::Grid>(resolution);
+
 		m_gameRunning = true;
 	}
 
@@ -37,8 +40,9 @@ namespace editor
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
 			sf::Vector2i t_mousePos = globals::positionInWindow(sf::Mouse::getPosition(), &*m_window);
-			//std::cout << "Mouse X: " << t_mousePos.x << " Mouse Y: " << t_mousePos.y << std::endl;
-			paint(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+
+			m_grid->addTileAtPosition(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+			//paint(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
 		}
 	}
 
@@ -49,11 +53,13 @@ namespace editor
 		//Render things here
 		m_tileSelectorWindow->render(&*m_window);
 
-		for (const auto& t_paintedTile : m_paintedObjects) {
-			if (t_paintedTile != nullptr) {
-				t_paintedTile->render(&*m_window);
-			}
-		}
+		//for (const auto& t_paintedTile : m_paintedObjects) {
+		//	if (t_paintedTile != nullptr) {
+		//		t_paintedTile->render(&*m_window);
+		//	}
+		//}
+
+		m_grid->render(&*m_window);
 
 		m_window->display();
 	}
@@ -63,12 +69,12 @@ namespace editor
 		return m_gameRunning;
 	}
 
-	void EditorWorld::paint(const universal::TileBase* objectToPaint, const sf::Vector2i& position)
-	{
-		if (objectToPaint != nullptr) {
-			universal::TileBase* t_tileCopy = new universal::TileBase(*objectToPaint);
-			t_tileCopy->setPosition(sf::Vector2f(position.x, position.y));
-			m_paintedObjects.push_back(t_tileCopy);
-		}
-	}
+	//void EditorWorld::paint(const universal::TileBase* objectToPaint, const sf::Vector2i& position)
+	//{
+	//	if (objectToPaint != nullptr) {
+	//		universal::TileBase* t_tileCopy = new universal::TileBase(*objectToPaint);
+	//		t_tileCopy->setPosition(sf::Vector2f(position.x, position.y));
+	//		m_paintedObjects.push_back(t_tileCopy);
+	//	}
+	//}
 }
