@@ -15,7 +15,7 @@ namespace universal
 		unsigned int m_gridHeight = 0;
 
 	public:
-		Grid(const sf::Vector2i& windowSize);
+		Grid(const sf::Vector2i& resolution);
 
 		void render(sf::RenderWindow* window) override;
 

@@ -5,6 +5,7 @@
 #include "IRender.h"
 #include "IEventHandler.h"
 #include "TileBase.h"
+#include "Grid.h"
 
 namespace editor 
 {
@@ -14,9 +15,9 @@ namespace editor
 		std::unique_ptr<sf::RenderWindow> m_window = nullptr;
 		sf::Event m_event;
 
-		std::vector<std::unique_ptr<universal::TileBase>> m_tiles = std::vector<std::unique_ptr<universal::TileBase>>();
-		std::unique_ptr<universal::TileBase> m_selectedTile = nullptr;
-
+		//std::vector<std::unique_ptr<universal::TileBase>> m_tiles = std::vector<std::unique_ptr<universal::TileBase>>();
+		std::unique_ptr<universal::TileBase> m_currentSelection = nullptr;
+		std::unique_ptr<universal::Grid> m_grid = nullptr;
 
 	public:
 		TileSelectorWindow(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);

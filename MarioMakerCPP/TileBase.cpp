@@ -16,8 +16,6 @@ namespace universal
 		m_body = std::make_unique<sf::RectangleShape>(other.m_body->getSize());
 		m_body->setPosition(other.m_body->getPosition());
 		m_body->setFillColor(other.m_body->getFillColor());
-		m_body->setOutlineColor(other.m_body->getOutlineColor());
-		m_body->setOutlineThickness(other.m_body->getOutlineThickness());
 	}
 
 
@@ -26,7 +24,7 @@ namespace universal
 		window->draw(*m_body);
 	}
 
-	const sf::Vector2f TileBase::getPosition()
+	const sf::Vector2f TileBase::getPosition() const
 	{
 		return m_body->getPosition();
 	}
@@ -36,7 +34,7 @@ namespace universal
 		m_body->setPosition(position);
 	}
 
-	const sf::Vector2f TileBase::getSize()
+	const sf::Vector2f TileBase::getSize() const
 	{
 		return m_body->getSize();
 	}
@@ -44,5 +42,10 @@ namespace universal
 	void TileBase::setOutlineColor(const sf::Color& color)
 	{
 		m_body->setOutlineColor(color);
+	}
+
+	const sf::Color& TileBase::getFillColor() const
+	{
+		return m_body->getFillColor();
 	}
 }

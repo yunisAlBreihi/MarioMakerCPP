@@ -16,10 +16,10 @@ namespace universal
 
 		void render(sf::RenderWindow* window) override;
 
-		const sf::Vector2f getPosition();
+		const sf::Vector2f getPosition() const;
 		void setPosition(const sf::Vector2f& position);
-		const sf::Vector2f getSize();
-
+		const sf::Vector2f getSize() const;
 		void setOutlineColor(const sf::Color& color);
+		const sf::Color& getFillColor() const;
 	};
 }

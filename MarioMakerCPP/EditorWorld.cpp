@@ -22,7 +22,13 @@ namespace editor
 
 	void EditorWorld::start()
 	{
+		m_rectangle = new sf::RectangleShape(sf::Vector2f(32.0f,32.0f));
 
+		m_texture = new sf::Texture();
+		m_rect = new sf::IntRect(sf::Vector2i(32, 32), sf::Vector2i(16, 16));
+
+		m_texture->loadFromFile("spritesheet.png", *m_rect);
+		m_rectangle->setTexture(m_texture);
 	}
 
 	void EditorWorld::eventHandler()
@@ -39,10 +45,10 @@ namespace editor
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
-			sf::Vector2i t_mousePos = globals::positionInWindow(sf::Mouse::getPosition(), &*m_window);
-
-			m_grid->addTileAtPosition(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
-			//paint(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+			if (m_tileSelectorWindow->getCurrentSelection() != nullptr) {
+				sf::Vector2i t_mousePos = globals::positionInWindow(sf::Mouse::getPosition(), &*m_window);
+				m_grid->addTileAtPosition(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+			}
 		}
 	}
 
@@ -52,14 +58,9 @@ namespace editor
 
 		//Render things here
 		m_tileSelectorWindow->render(&*m_window);
-
-		//for (const auto& t_paintedTile : m_paintedObjects) {
-		//	if (t_paintedTile != nullptr) {
-		//		t_paintedTile->render(&*m_window);
-		//	}
-		//}
-
 		m_grid->render(&*m_window);
+
+		m_window->draw(*m_rectangle);
 
 		m_window->display();
 	}
@@ -68,13 +69,4 @@ namespace editor
 	{
 		return m_gameRunning;
 	}
-
-	//void EditorWorld::paint(const universal::TileBase* objectToPaint, const sf::Vector2i& position)
-	//{
-	//	if (objectToPaint != nullptr) {
-	//		universal::TileBase* t_tileCopy = new universal::TileBase(*objectToPaint);
-	//		t_tileCopy->setPosition(sf::Vector2f(position.x, position.y));
-	//		m_paintedObjects.push_back(t_tileCopy);
-	//	}
-	//}
 }

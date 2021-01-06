@@ -38,7 +38,7 @@ namespace universal
 
 		const universal::TileBase* t_tile = &getTileAtPosition(sf::Vector2i(position.x, position.y));
 
-		if (t_tile == nullptr) {
+		if (t_tile == nullptr || tileToAdd->getFillColor() != m_tiles[t_gridPosX][t_gridPosY]->getFillColor()) {
 			std::unique_ptr<universal::TileBase> t_tileToAdd = std::make_unique<universal::TileBase>(*tileToAdd);
 			t_tileToAdd->setPosition(sf::Vector2f(t_gridPosX * globals::TILE_SIZE, t_gridPosY * globals::TILE_SIZE));
 			m_tiles[t_gridPosX][t_gridPosY] = std::move(t_tileToAdd);
