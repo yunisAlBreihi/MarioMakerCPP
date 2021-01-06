@@ -19,6 +19,7 @@ namespace universal
 
 		void render(sf::RenderWindow* window) override;
 
+		void addTile(const universal::TileBase* tileToAdd);
 		void addTileAtPosition(const universal::TileBase* tileToAdd, const sf::Vector2i& position);
 		const universal::TileBase& getTileAtPosition(const sf::Vector2i& position)const;
 	};

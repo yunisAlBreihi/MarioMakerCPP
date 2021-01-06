@@ -27,6 +27,18 @@ namespace universal
 		}
 	}
 
+	void Grid::addTile(const universal::TileBase* tileToAdd)
+	{
+		for (size_t x = 0; x < m_gridWidth; x++) {
+			for (size_t y = 0; y < m_gridHeight; y++) {
+				if (m_tiles[x][y] == nullptr) {
+					m_tiles[x][y] = std::make_unique<universal::TileBase>(universal::TileBase(*tileToAdd));
+					return;
+				}
+			}
+		}
+	}
+
 	void Grid::addTileAtPosition(const universal::TileBase* tileToAdd, const sf::Vector2i& position)
 	{
 		const unsigned int t_gridPosX = position.x / globals::TILE_SIZE;

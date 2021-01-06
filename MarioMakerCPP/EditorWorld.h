@@ -17,11 +17,6 @@ namespace editor
 
 		bool m_gameRunning = false;
 
-		//TEMP
-		sf::RectangleShape* m_rectangle = nullptr;
-		sf::Texture* m_texture = nullptr;
-		sf::IntRect* m_rect = nullptr;
-
 	public:
 		EditorWorld(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);
 

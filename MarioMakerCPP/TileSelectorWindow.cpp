@@ -12,6 +12,10 @@ namespace editor
 
 		m_grid = std::make_unique<universal::Grid>(resolution);
 
+		std::unique_ptr<universal::TileBase> t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE));
+
+		m_grid->addTile(&*t_tile);
+
 		//for (size_t j = 0; j < 10; j++) {
 		//	for (size_t i = 0; i < 2; i++)
 		//	{
@@ -38,12 +42,16 @@ namespace editor
 			}
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
-				sf::Vector2i t_windowPos = globals::positionInWindow(sf::Mouse::getPosition(), &*m_window);
-				const universal::TileBase* t_tile = &m_grid->getTileAtPosition(t_windowPos);
+				if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true)
+				{
+					sf::Vector2i t_windowPos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
+					const universal::TileBase* t_tile = &m_grid->getTileAtPosition(t_windowPos);
 
-				if (t_tile != nullptr) {
-					m_currentSelection = std::make_unique<universal::TileBase>(*t_tile);
+					if (t_tile != nullptr) {
+						m_currentSelection = std::make_unique<universal::TileBase>(*t_tile);
+					}
 				}
+
 
 				//for (auto it = m_tiles.begin(); it != m_tiles.end(); ++it) {
 				//	if (*it != nullptr) {
@@ -81,13 +89,15 @@ namespace editor
 		//if (m_currentSelection != nullptr) {
 		//	m_currentSelection->render(&*m_window);
 		//}
+		m_grid->render(&*m_window);
+			
 
 		m_window->display();
 	}
 
 	const bool TileSelectorWindow::selectTile(universal::TileBase* tile)
 	{
-		const sf::Vector2i t_localMousePos = globals::positionInWindow(sf::Mouse::getPosition(), &*m_window);
+		const sf::Vector2i t_localMousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
 		const sf::Vector2f t_tilePos = tile->getPosition();
 		const sf::Vector2f t_tileSize = tile->getSize();
 

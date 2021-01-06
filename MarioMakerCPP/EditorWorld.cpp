@@ -22,13 +22,7 @@ namespace editor
 
 	void EditorWorld::start()
 	{
-		m_rectangle = new sf::RectangleShape(sf::Vector2f(32.0f,32.0f));
 
-		m_texture = new sf::Texture();
-		m_rect = new sf::IntRect(sf::Vector2i(32, 32), sf::Vector2i(16, 16));
-
-		m_texture->loadFromFile("spritesheet.png", *m_rect);
-		m_rectangle->setTexture(m_texture);
 	}
 
 	void EditorWorld::eventHandler()
@@ -45,9 +39,11 @@ namespace editor
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
-			if (m_tileSelectorWindow->getCurrentSelection() != nullptr) {
-				sf::Vector2i t_mousePos = globals::positionInWindow(sf::Mouse::getPosition(), &*m_window);
-				m_grid->addTileAtPosition(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+			if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true) {
+				if (m_tileSelectorWindow->getCurrentSelection() != nullptr) {
+					sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
+					m_grid->addTileAtPosition(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+				}
 			}
 		}
 	}
@@ -59,8 +55,6 @@ namespace editor
 		//Render things here
 		m_tileSelectorWindow->render(&*m_window);
 		m_grid->render(&*m_window);
-
-		m_window->draw(*m_rectangle);
 
 		m_window->display();
 	}

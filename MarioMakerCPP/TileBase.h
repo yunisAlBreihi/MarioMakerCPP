@@ -10,7 +10,11 @@ namespace universal
 	private:
 		std::unique_ptr<sf::RectangleShape> m_body = nullptr;
 
+		sf::Texture* m_texture = nullptr;
+		sf::IntRect* m_rect = nullptr;
+
 	public:
+		TileBase(const sf::Vector2f& size);
 		TileBase(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color);
 		TileBase(const TileBase& other) noexcept;
 
