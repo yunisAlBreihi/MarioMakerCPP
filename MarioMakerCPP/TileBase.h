@@ -14,8 +14,8 @@ namespace universal
 		sf::IntRect* m_rect = nullptr;
 
 	public:
-		TileBase(const sf::Vector2f& size);
-		TileBase(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color);
+		TileBase(const sf::Vector2f& size, const char* spritePath);
+		TileBase(const sf::Vector2f& position, const sf::Vector2f& size, const char* spritePath);
 		TileBase(const TileBase& other) noexcept;
 
 		void render(sf::RenderWindow* window) override;

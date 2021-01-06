@@ -33,6 +33,7 @@ namespace universal
 			for (size_t y = 0; y < m_gridHeight; y++) {
 				if (m_tiles[x][y] == nullptr) {
 					m_tiles[x][y] = std::make_unique<universal::TileBase>(universal::TileBase(*tileToAdd));
+					m_tiles[x][y]->setPosition(sf::Vector2f(x * globals::TILE_SIZE, y * globals::TILE_SIZE));
 					return;
 				}
 			}

@@ -9,13 +9,15 @@ namespace editor
 	{
 		m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(resolution.x, resolution.y), windowName);
 		m_window->setPosition(position);
-
 		m_grid = std::make_unique<universal::Grid>(resolution);
 
-		std::unique_ptr<universal::TileBase> t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE));
-
+		std::unique_ptr<universal::TileBase> t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE), 
+																							"Sprites/terrain_intersection_top.png");
 		m_grid->addTile(&*t_tile);
 
+		t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE),
+																	"Sprites/terrain_1x1_B.png");
+		m_grid->addTile(&*t_tile);
 		//for (size_t j = 0; j < 10; j++) {
 		//	for (size_t i = 0; i < 2; i++)
 		//	{
