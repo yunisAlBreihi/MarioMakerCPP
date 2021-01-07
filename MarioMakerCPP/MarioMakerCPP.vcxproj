@@ -152,6 +152,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TileBase.cpp" />
+    <ClCompile Include="SpriteCreator.cpp" />
     <ClCompile Include="TileSelectorWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="IRender.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TileBase.h" />
+    <ClInclude Include="SpriteCreator.h" />
     <ClInclude Include="TileSelectorWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

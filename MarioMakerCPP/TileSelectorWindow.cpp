@@ -10,14 +10,23 @@ namespace editor
 		m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(resolution.x, resolution.y), windowName);
 		m_window->setPosition(position);
 		m_grid = std::make_unique<universal::Grid>(resolution);
+		m_spriteCreator = std::make_unique<SpriteCreator>();
 
-		std::unique_ptr<universal::TileBase> t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE), 
-																							"Sprites/terrain_intersection_top.png");
+		std::unique_ptr<universal::TileBase> t_tile = nullptr;
+		const sf::Vector2f t_tileSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
+
+		sf::Texture* t_tex = new sf::Texture(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 
+			3));
+		t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
 		m_grid->addTile(&*t_tile);
 
-		t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE),
-																	"Sprites/terrain_1x1_B.png");
+		t_tex = new sf::Texture(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 24));
+		t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
 		m_grid->addTile(&*t_tile);
+
+		//t_tex = m_tileCreator->CreateTile("Sprites/SMB_tiles_tilesheet.png",15 + 7);
+		//t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
+		//m_grid->addTile(&*t_tile);
 		//for (size_t j = 0; j < 10; j++) {
 		//	for (size_t i = 0; i < 2; i++)
 		//	{
