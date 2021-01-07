@@ -7,6 +7,7 @@
 #include "TileBase.h"
 #include "Grid.h"
 #include "SpriteCreator.h"
+#include "Sprite.h"
 
 namespace editor 
 {
@@ -21,6 +22,8 @@ namespace editor
 		std::unique_ptr<universal::Grid> m_grid = nullptr;
 		
 		std::unique_ptr<SpriteCreator> m_spriteCreator = nullptr;
+
+		std::unique_ptr<universal::Sprite> m_sprite = nullptr;
 
 	public:
 		TileSelectorWindow(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);

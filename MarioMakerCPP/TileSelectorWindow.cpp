@@ -12,37 +12,19 @@ namespace editor
 		m_grid = std::make_unique<universal::Grid>(resolution);
 		m_spriteCreator = std::make_unique<SpriteCreator>();
 
-		std::unique_ptr<universal::TileBase> t_tile = nullptr;
-		const sf::Vector2f t_tileSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
+		m_sprite = std::move(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 47, sf::Vector2i(4,3)));
 
-		sf::Texture* t_tex = new sf::Texture(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 
-			3));
-		t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
-		m_grid->addTile(&*t_tile);
+		//std::unique_ptr<universal::TileBase> t_tile = nullptr;
+		//const sf::Vector2f t_tileSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
 
-		t_tex = new sf::Texture(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 24));
-		t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
-		m_grid->addTile(&*t_tile);
-
-		//t_tex = m_tileCreator->CreateTile("Sprites/SMB_tiles_tilesheet.png",15 + 7);
+		//sf::Texture* t_tex = new sf::Texture(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 
+		//	3));
 		//t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
 		//m_grid->addTile(&*t_tile);
-		//for (size_t j = 0; j < 10; j++) {
-		//	for (size_t i = 0; i < 2; i++)
-		//	{
-		//		sf::Color t_color;
-		//			if (i == 0)	{
-		//				t_color = sf::Color::Blue;
-		//			}
-		//			else {
-		//				t_color = sf::Color::Green;
-		//			}
-		//		std::unique_ptr t_tile = std::make_unique<universal::TileBase>(sf::Vector2f(i * globals::TILE_SIZE + i, j * globals::TILE_SIZE + j),
-		//			sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE),
-		//			t_color);
-		//		m_tiles.push_back(std::move(t_tile));
-		//	}
-		//}
+
+		//t_tex = new sf::Texture(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 24));
+		//t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
+		//m_grid->addTile(&*t_tile);
 	}
 
 	void TileSelectorWindow::eventHandler()
@@ -62,26 +44,6 @@ namespace editor
 						m_currentSelection = std::make_unique<universal::TileBase>(*t_tile);
 					}
 				}
-
-
-				//for (auto it = m_tiles.begin(); it != m_tiles.end(); ++it) {
-				//	if (*it != nullptr) {
-				//		if (selectTile(&**it) == true) {
-				//			if (m_selectedTile != *it) {
-
-				//				if (m_selectedTile != nullptr) {
-				//					m_selectedTile->setOutlineColor(globals::UNHIGHLIGHTED_COLOR);
-				//					m_tiles.emplace_back(std::move(m_selectedTile));
-				//				}
-				//				m_selectedTile = std::move(*it);
-				//				m_selectedTile->setOutlineColor(globals::HIGHLIGHTED_COLOR);
-
-				//				m_tiles.erase(it);
-				//				break;
-				//			}
-				//		}
-				//	}
-				//}
 			}
 		}
 	}
@@ -90,18 +52,8 @@ namespace editor
 	{
 		m_window->clear(globals::GRAY);
 
-		//Render things here
-		//for (const auto& t_tile : m_tiles) {
-		//	if (t_tile != nullptr) {
-		//		t_tile->render(&*m_window);
-		//	}
-		//}
-
-		//if (m_currentSelection != nullptr) {
-		//	m_currentSelection->render(&*m_window);
-		//}
+		m_sprite->render(&*m_window);
 		m_grid->render(&*m_window);
-			
 
 		m_window->display();
 	}
