@@ -12,7 +12,9 @@ namespace editor
 		m_grid = std::make_unique<universal::Grid>(resolution);
 		m_spriteCreator = std::make_unique<SpriteCreator>();
 
-		m_sprite = std::move(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 47, sf::Vector2i(4,3)));
+		m_pipeSprite = std::move(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 14, sf::Vector2i(2,2)));
+
+		m_grid->addSprite(&*m_pipeSprite);
 
 		//std::unique_ptr<universal::TileBase> t_tile = nullptr;
 		//const sf::Vector2f t_tileSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
@@ -20,7 +22,6 @@ namespace editor
 		//sf::Texture* t_tex = new sf::Texture(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 
 		//	3));
 		//t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
-		//m_grid->addTile(&*t_tile);
 
 		//t_tex = new sf::Texture(m_spriteCreator->CreateSprite("Sprites/SMB_tiles_tilesheet.png", 24));
 		//t_tile = std::make_unique<universal::TileBase>(t_tileSize, t_tex);
@@ -38,10 +39,15 @@ namespace editor
 				if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true)
 				{
 					sf::Vector2i t_windowPos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
-					const universal::TileBase* t_tile = &m_grid->getTileAtPosition(t_windowPos);
+					//const universal::TileBase* t_tile = &m_grid->getTileAtPosition(t_windowPos);
+					const universal::Sprite* t_sprite = &m_grid->getSpriteAtPosition(t_windowPos);
 
-					if (t_tile != nullptr) {
-						m_currentSelection = std::make_unique<universal::TileBase>(*t_tile);
+					//if (t_tile != nullptr) {
+					//	m_currentSelection = std::make_unique<universal::TileBase>(*t_tile);
+					//}
+
+					if (t_sprite != nullptr) {
+						m_selected = std::make_unique<universal::Sprite>(*t_sprite);
 					}
 				}
 			}
@@ -52,7 +58,7 @@ namespace editor
 	{
 		m_window->clear(globals::GRAY);
 
-		m_sprite->render(&*m_window);
+		//m_pipeSprite->render(&*m_window);
 		m_grid->render(&*m_window);
 
 		m_window->display();
@@ -78,5 +84,10 @@ namespace editor
 	const universal::TileBase* TileSelectorWindow::getCurrentSelection()
 	{
 		return &*m_currentSelection;
+	}
+
+	const universal::Sprite* TileSelectorWindow::getSelected()
+	{
+		return &*m_selected;
 	}
 }

@@ -40,9 +40,14 @@ namespace editor
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
 			if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true) {
-				if (m_tileSelectorWindow->getCurrentSelection() != nullptr) {
+				//if (m_tileSelectorWindow->getCurrentSelection() != nullptr) {
+				//	sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
+				//	m_grid->addTileAtPosition(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+				//}
+
+				if (m_tileSelectorWindow->getSelected() != nullptr) {
 					sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
-					m_grid->addTileAtPosition(m_tileSelectorWindow->getCurrentSelection(), t_mousePos);
+					m_grid->addSpriteAtPosition(m_tileSelectorWindow->getSelected(), t_mousePos);
 				}
 			}
 		}

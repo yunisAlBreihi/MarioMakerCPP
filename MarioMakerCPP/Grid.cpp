@@ -9,9 +9,11 @@ namespace universal
 		m_gridHeight = windowSize.y / globals::TILE_SIZE;
 
 		for (size_t x = 0; x < m_gridWidth; ++x) {
-			m_tiles.push_back(std::vector<std::unique_ptr<universal::TileBase>>());
+			m_spriteParts.push_back(std::vector<std::unique_ptr<universal::SpritePart>>());
+			m_sprites.push_back(std::vector<std::unique_ptr<universal::Sprite>>());
 			for (size_t y = 0; y < m_gridHeight; ++y) {
-				m_tiles[x].push_back(nullptr);
+				m_spriteParts[x].push_back(nullptr);
+				m_sprites[x].push_back(nullptr);
 			}
 		}
 	}
@@ -20,27 +22,35 @@ namespace universal
 	{
 		for (size_t x = 0; x < m_gridWidth; x++) {
 			for (size_t y = 0; y < m_gridHeight; y++) {
-				if(m_tiles[x][y] != nullptr){
-					m_tiles[x][y]->render(&*window);
+				//if(m_tiles[x][y] != nullptr){
+				//	m_tiles[x][y]->render(&*window);
+				//}
+
+				if (m_sprites[x][y] != nullptr) {
+					m_sprites[x][y]->render(&*window);
+				}
+
+				if (m_spriteParts[x][y] != nullptr) {
+					m_spriteParts[x][y]->getSprite().render(&*window);
 				}
 			}
 		}
 	}
 
-	void Grid::addTile(const universal::TileBase* tileToAdd)
+	void Grid::addSprite(const universal::Sprite* sprite)
 	{
 		for (size_t x = 0; x < m_gridWidth; x++) {
 			for (size_t y = 0; y < m_gridHeight; y++) {
-				if (m_tiles[x][y] == nullptr) {
-					m_tiles[x][y] = std::make_unique<universal::TileBase>(universal::TileBase(*tileToAdd));
-					m_tiles[x][y]->setPosition(sf::Vector2f(x * globals::TILE_SIZE, y * globals::TILE_SIZE));
+				if (m_sprites[x][y] == nullptr) {
+					m_sprites[x][y] = std::make_unique<universal::Sprite>(universal::Sprite(*sprite));
+					//m_sprites[x][y]->setPosition(sf::Vector2f(x * globals::TILE_SIZE, y * globals::TILE_SIZE));
 					return;
 				}
 			}
 		}
 	}
 
-	void Grid::addTileAtPosition(const universal::TileBase* tileToAdd, const sf::Vector2i& position)
+	void Grid::addSpriteAtPosition(const universal::Sprite* sprite, const sf::Vector2i& position)
 	{
 		const unsigned int t_gridPosX = position.x / globals::TILE_SIZE;
 		const unsigned int t_gridPosY = position.y / globals::TILE_SIZE;
@@ -49,21 +59,21 @@ namespace universal
 			return;
 		}
 
-		const universal::TileBase* t_tile = &getTileAtPosition(sf::Vector2i(position.x, position.y));
+		const universal::Sprite* t_sprite = &getSpriteAtPosition(sf::Vector2i(position.x, position.y));
 
-		if (t_tile == nullptr || tileToAdd->getFillColor() != m_tiles[t_gridPosX][t_gridPosY]->getFillColor()) {
-			std::unique_ptr<universal::TileBase> t_tileToAdd = std::make_unique<universal::TileBase>(*tileToAdd);
+		if (t_sprite == nullptr) {
+			std::unique_ptr<universal::Sprite> t_spriteToAdd = std::make_unique<universal::Sprite>(*sprite);
 
-			t_tileToAdd->setPosition(sf::Vector2f(t_gridPosX * globals::TILE_SIZE, t_gridPosY * globals::TILE_SIZE));
-			m_tiles[t_gridPosX][t_gridPosY] = std::move(t_tileToAdd);
+			t_spriteToAdd->setPosition(sf::Vector2f(t_gridPosX * globals::TILE_SIZE, t_gridPosY * globals::TILE_SIZE));
+			m_sprites[t_gridPosX][t_gridPosY] = std::move(t_spriteToAdd);
 		}
 	}
 
-	const universal::TileBase& Grid::getTileAtPosition(const sf::Vector2i& position) const
+	const universal::Sprite& Grid::getSpriteAtPosition(const sf::Vector2i& position) const
 	{
 		const unsigned int gridPosX = position.x / globals::TILE_SIZE;
 		const unsigned int gridPosY = position.y / globals::TILE_SIZE;
 
-		return *m_tiles[gridPosX][gridPosY];
+		return *m_sprites[gridPosX][gridPosY];
 	}
 }

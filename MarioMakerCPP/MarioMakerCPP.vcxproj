@@ -151,6 +151,7 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpritePart.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileBase.cpp" />
     <ClCompile Include="SpriteCreator.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="IEventHandler.h" />
     <ClInclude Include="IRender.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpritePart.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileBase.h" />
     <ClInclude Include="SpriteCreator.h" />

@@ -19,11 +19,12 @@ namespace editor
 
 		//std::vector<std::unique_ptr<universal::TileBase>> m_tiles = std::vector<std::unique_ptr<universal::TileBase>>();
 		std::unique_ptr<universal::TileBase> m_currentSelection = nullptr;
+		std::unique_ptr<universal::Sprite> m_selected = nullptr;
 		std::unique_ptr<universal::Grid> m_grid = nullptr;
 		
 		std::unique_ptr<SpriteCreator> m_spriteCreator = nullptr;
 
-		std::unique_ptr<universal::Sprite> m_sprite = nullptr;
+		std::unique_ptr<universal::Sprite> m_pipeSprite = nullptr;
 
 	public:
 		TileSelectorWindow(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);
@@ -33,6 +34,7 @@ namespace editor
 
 		const bool selectTile(universal::TileBase* tile);
 		const universal::TileBase* getCurrentSelection();
+		const universal::Sprite* getSelected();
 	};
 }
 

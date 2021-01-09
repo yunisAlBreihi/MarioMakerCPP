@@ -25,9 +25,11 @@ namespace editor
 		const sf::Vector2f t_spriteSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
 
 		std::unique_ptr<universal::Sprite> t_sprite = std::make_unique<universal::Sprite>();
+		t_sprite->setBoundsSize(sf::Vector2f(spriteSize.x, spriteSize.y));
 
-		if (spriteIndex + spriteSize.x > m_tileSheetLength) {
-			spriteIndex = spriteIndex - ((m_tileSheetLength - 1) - (m_tileSheetLength - spriteSize.x));
+		if ((spriteIndex % m_tileSheetLength) + spriteSize.x > m_tileSheetLength) {
+			const unsigned int t_quotient = spriteIndex / m_tileSheetLength;
+			spriteIndex = (m_tileSheetLength * t_quotient) + (m_tileSheetLength - spriteSize.x);
 		}
 
 		for (size_t i = 0; i < spriteSize.x; ++i) {
@@ -37,7 +39,6 @@ namespace editor
 
 			for (size_t j = 0; j < spriteSize.y; ++j) {
 				const unsigned int t_row = (spriteIndex + ((m_tileSize - 1) * j)) / m_tileSheetLength;
-				//const unsigned int t_rowIteration = t_row;
 				const unsigned int t_numOfRowSeparators = (1 + (m_separatorSize * t_row)) + (m_headerSize * 2);
 				const unsigned int t_rowIndex = t_numOfRowSeparators + (t_row * m_tileSize);
 
