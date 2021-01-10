@@ -1,5 +1,6 @@
 #include "Grid.h"
 #include "globals.h"
+#include <iostream>
 
 namespace universal
 {
@@ -22,16 +23,8 @@ namespace universal
 	{
 		for (size_t x = 0; x < m_gridWidth; x++) {
 			for (size_t y = 0; y < m_gridHeight; y++) {
-				//if(m_tiles[x][y] != nullptr){
-				//	m_tiles[x][y]->render(&*window);
-				//}
-
 				if (m_sprites[x][y] != nullptr) {
 					m_sprites[x][y]->render(&*window);
-				}
-
-				if (m_spriteParts[x][y] != nullptr) {
-					m_spriteParts[x][y]->getSprite().render(&*window);
 				}
 			}
 		}
@@ -41,9 +34,10 @@ namespace universal
 	{
 		for (size_t x = 0; x < m_gridWidth; x++) {
 			for (size_t y = 0; y < m_gridHeight; y++) {
-				if (m_sprites[x][y] == nullptr) {
+				if (m_spriteParts[x][y] == nullptr && m_sprites[x][y] == nullptr) {
 					m_sprites[x][y] = std::make_unique<universal::Sprite>(universal::Sprite(*sprite));
-					//m_sprites[x][y]->setPosition(sf::Vector2f(x * globals::TILE_SIZE, y * globals::TILE_SIZE));
+					createSpriteParts(*sprite, x, y);
+					m_sprites[x][y]->setPosition(sf::Vector2f(x * globals::TILE_SIZE, y * globals::TILE_SIZE));
 					return;
 				}
 			}
@@ -55,25 +49,55 @@ namespace universal
 		const unsigned int t_gridPosX = position.x / globals::TILE_SIZE;
 		const unsigned int t_gridPosY = position.y / globals::TILE_SIZE;
 
-		if (t_gridPosX > m_gridWidth - 1 || t_gridPosY > m_gridHeight - 1) {
+		if (checkIfSpriteFit(*sprite, t_gridPosX, t_gridPosY) == false) {
 			return;
 		}
 
-		const universal::Sprite* t_sprite = &getSpriteAtPosition(sf::Vector2i(position.x, position.y));
+		const universal::Sprite* t_sprite = getSpriteAtPosition(sf::Vector2i(position.x, position.y));
 
 		if (t_sprite == nullptr) {
 			std::unique_ptr<universal::Sprite> t_spriteToAdd = std::make_unique<universal::Sprite>(*sprite);
-
 			t_spriteToAdd->setPosition(sf::Vector2f(t_gridPosX * globals::TILE_SIZE, t_gridPosY * globals::TILE_SIZE));
+
+			createSpriteParts(*t_spriteToAdd, t_gridPosX, t_gridPosY);
 			m_sprites[t_gridPosX][t_gridPosY] = std::move(t_spriteToAdd);
 		}
 	}
 
-	const universal::Sprite& Grid::getSpriteAtPosition(const sf::Vector2i& position) const
+	const universal::Sprite* Grid::getSpriteAtPosition(const sf::Vector2i& position) const
 	{
 		const unsigned int gridPosX = position.x / globals::TILE_SIZE;
 		const unsigned int gridPosY = position.y / globals::TILE_SIZE;
 
-		return *m_sprites[gridPosX][gridPosY];
+		if (m_spriteParts[gridPosX][gridPosY].get() != nullptr)	{
+			return &(m_spriteParts[gridPosX][gridPosY]->getSprite());
+		}
+		else {
+			return nullptr;
+		}
+	}
+
+	const bool Grid::checkIfSpriteFit(const universal::Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY) const
+	{
+		int i = 0;
+		for (int x = 0; x < sprite.getBoundsSize().x; ++x) {
+			for (int y = 0; y < sprite.getBoundsSize().y; ++y, ++i) {
+				if ( indexX + x > m_gridWidth - 1 || indexY + y > m_gridHeight - 1 ||
+					m_spriteParts[indexX + x][indexY + y] != nullptr) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	void Grid::createSpriteParts(const universal::Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY)
+	{
+		int i = 0;
+		for (int x = 0; x < sprite.getBoundsSize().x; ++x) {
+			for (int y = 0; y < sprite.getBoundsSize().y; ++y, ++i) {
+				m_spriteParts[indexX + x][indexY + y] = std::make_unique<universal::SpritePart>(sprite);
+			}
+		}
 	}
 }

@@ -33,6 +33,11 @@ namespace universal
 		m_boundsSize = size;
 	}
 
+	const sf::Vector2f& Sprite::getBoundsSize() const
+	{
+		return m_boundsSize;
+	}
+
 	void Sprite::setPosition(const sf::Vector2f position)
 	{
 		int i = 0;
@@ -42,5 +47,10 @@ namespace universal
 				m_tiles[i]->setPosition(t_newPos);
 			}
 		}
+	}
+	
+	const sf::Vector2f& Sprite::getPosition() const
+	{
+		return m_tiles[0]->getPosition();
 	}
 }

@@ -7,12 +7,11 @@ namespace universal
 	class SpritePart
 	{
 	private:
-		Sprite& m_parent;
-		sf::Vector2f m_position;
+		const Sprite& m_parent;
 
 	public:
-		SpritePart(Sprite& parent, const sf::Vector2f& position);
+		SpritePart(const Sprite& parent);
 
-		Sprite& getSprite() const;
+		const Sprite& getSprite() const;
 	};
 }

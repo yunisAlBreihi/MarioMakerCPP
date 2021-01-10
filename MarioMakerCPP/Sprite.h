@@ -22,6 +22,8 @@ namespace universal
 		void addTile(const Tile* tile);
 
 		void setBoundsSize(const sf::Vector2f& size);
+		const sf::Vector2f& getBoundsSize() const;
 		void setPosition(const sf::Vector2f position);
+		const sf::Vector2f& getPosition() const;
 	};
 }

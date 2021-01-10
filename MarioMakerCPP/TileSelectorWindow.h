@@ -17,7 +17,6 @@ namespace editor
 		std::unique_ptr<sf::RenderWindow> m_window = nullptr;
 		sf::Event m_event;
 
-		//std::vector<std::unique_ptr<universal::TileBase>> m_tiles = std::vector<std::unique_ptr<universal::TileBase>>();
 		std::unique_ptr<universal::TileBase> m_currentSelection = nullptr;
 		std::unique_ptr<universal::Sprite> m_selected = nullptr;
 		std::unique_ptr<universal::Grid> m_grid = nullptr;
@@ -25,7 +24,7 @@ namespace editor
 		std::unique_ptr<SpriteCreator> m_spriteCreator = nullptr;
 
 		std::unique_ptr<universal::Sprite> m_pipeSprite = nullptr;
-
+		std::unique_ptr<universal::Sprite> m_solidBlockSprite = nullptr;
 	public:
 		TileSelectorWindow(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);
 

@@ -17,12 +17,17 @@ namespace universal
 		unsigned int m_gridWidth = 0;
 		unsigned int m_gridHeight = 0;
 
+	private:
+		void createSpriteParts(const universal::Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY);
+		//bool checkSpriteParts(const unsigned int& indexX, const unsigned int& indexY) const;
+
 	public:
 		Grid(const sf::Vector2i& resolution);
 		void render(sf::RenderWindow* window) override;
 
 		void addSprite(const universal::Sprite* sprite);
 		void addSpriteAtPosition(const universal::Sprite* sprite, const sf::Vector2i& position);
-		const universal::Sprite& getSpriteAtPosition(const sf::Vector2i& position) const;
+		const universal::Sprite* getSpriteAtPosition(const sf::Vector2i& position) const;
+		const bool checkIfSpriteFit(const universal::Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY) const;
 	};
 }
