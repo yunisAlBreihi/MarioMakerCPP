@@ -18,7 +18,7 @@ namespace universal
 		TileBase(const sf::Vector2f& position, const sf::Vector2f& size, sf::Texture* texture);
 		TileBase(const TileBase& other) noexcept;
 
-		void render(sf::RenderWindow* window) override;
+		void render(sf::RenderWindow& window) override;
 
 		const sf::Vector2f getPosition() const;
 		void setPosition(const sf::Vector2f& position);

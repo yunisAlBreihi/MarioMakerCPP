@@ -24,9 +24,9 @@ universal::Tile::Tile(const Tile& other) noexcept
 	m_body->setTexture(other.m_body->getTexture());
 }
 
-void universal::Tile::render(sf::RenderWindow* window)
+void universal::Tile::render(sf::RenderWindow& window)
 {
-	window->draw(*m_body);
+	window.draw(*m_body);
 }
 
 const sf::Vector2f universal::Tile::getPosition() const

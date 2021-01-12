@@ -28,9 +28,9 @@ namespace universal
 	}
 
 
-	void TileBase::render(sf::RenderWindow* window)
+	void TileBase::render(sf::RenderWindow& window)
 	{
-		window->draw(*m_body);
+		window.draw(*m_body);
 	}
 
 	const sf::Vector2f TileBase::getPosition() const

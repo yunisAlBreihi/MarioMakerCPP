@@ -13,22 +13,22 @@ namespace editor
 		m_spriteCreator = std::make_unique<SpriteCreator>();
 
 		m_breakableBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 1, sf::Vector2i(1, 1), '0'));
-		m_grid->addSprite(&*m_breakableBlockSprite);
+		m_grid->addSprite(*m_breakableBlockSprite);
 
 		m_coinBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 2, sf::Vector2i(1, 1), '1'));
-		m_grid->addSprite(&*m_coinBlockSprite);
+		m_grid->addSprite(*m_coinBlockSprite);
 
 		m_noteBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 4, sf::Vector2i(1, 1), '3'));
-		m_grid->addSprite(&*m_noteBlockSprite);
+		m_grid->addSprite(*m_noteBlockSprite);
 
 		m_solidBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 6, sf::Vector2i(1, 1), '4'));
-		m_grid->addSprite(&*m_solidBlockSprite);
+		m_grid->addSprite(*m_solidBlockSprite);
 
 		m_groundBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 121, sf::Vector2i(1, 1), '5'));
-		m_grid->addSprite(&*m_groundBlockSprite);
+		m_grid->addSprite(*m_groundBlockSprite);
 
 		m_pipeSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 14, sf::Vector2i(2, 2), '9'));
-		m_grid->addSprite(&*m_pipeSprite);
+		m_grid->addSprite(*m_pipeSprite);
 	}
 
 	void TileSelectorWindow::eventHandler()
@@ -39,8 +39,7 @@ namespace editor
 			}
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
-				if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true)
-				{
+				if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true) {
 					sf::Vector2i t_windowPos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
 					const universal::Sprite* t_sprite = m_grid->getSpriteAtPosition(t_windowPos);
 
@@ -52,11 +51,12 @@ namespace editor
 		}
 	}
 
-	void TileSelectorWindow::render(sf::RenderWindow* window)
+	void TileSelectorWindow::render(sf::RenderWindow& window)
 	{
 		m_window->clear(globals::GRAY);
 
-		m_grid->render(&*m_window);
+		//Render things here
+		m_grid->render(*m_window);
 
 		m_window->display();
 	}

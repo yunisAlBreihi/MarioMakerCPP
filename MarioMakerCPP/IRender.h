@@ -6,6 +6,6 @@ namespace universal
 	class IRender
 	{
 	public:
-		virtual void render(sf::RenderWindow* window) = 0;
+		virtual void render(sf::RenderWindow& window) = 0;
 	};
 }

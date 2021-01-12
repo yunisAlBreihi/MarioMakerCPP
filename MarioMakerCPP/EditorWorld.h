@@ -16,7 +16,6 @@ namespace editor
 		std::unique_ptr<universal::Grid> m_grid = nullptr;
 		SaveHandler m_saveHandler;
 
-
 		sf::Event m_event;
 
 		bool m_gameRunning = false;
@@ -24,7 +23,6 @@ namespace editor
 	public:
 		EditorWorld(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);
 
-		void start();
 		void eventHandler();
 		void render();
 

@@ -21,11 +21,6 @@ namespace editor
 		m_gameRunning = true;
 	}
 
-	void EditorWorld::start()
-	{
-
-	}
-
 	void EditorWorld::eventHandler()
 	{
 		if (m_window->pollEvent(m_event) == true) {
@@ -45,7 +40,7 @@ namespace editor
 			if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true) {
 				if (m_tileSelectorWindow->getSelected() != nullptr) {
 					sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
-					m_grid->addSpriteAtPosition(m_tileSelectorWindow->getSelected(), t_mousePos);
+					m_grid->addSpriteAtPosition(*m_tileSelectorWindow->getSelected(), t_mousePos);
 				}
 			}
 		}
@@ -56,8 +51,8 @@ namespace editor
 		m_window->clear();
 
 		//Render things here
-		m_tileSelectorWindow->render(&*m_window);
-		m_grid->render(&*m_window);
+		m_tileSelectorWindow->render(*m_window);
+		m_grid->render(*m_window);
 
 		m_window->display();
 	}

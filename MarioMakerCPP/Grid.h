@@ -22,10 +22,10 @@ namespace universal
 
 	public:
 		Grid(const sf::Vector2i& resolution);
-		void render(sf::RenderWindow* window) override;
+		void render(sf::RenderWindow& window) override;
 
-		void addSprite(const Sprite* sprite);
-		void addSpriteAtPosition(const Sprite* sprite, const sf::Vector2i& position);
+		void addSprite(const Sprite& sprite);
+		void addSpriteAtPosition(const Sprite& sprite, const sf::Vector2i& position);
 		const Sprite* getSpriteAtPosition(const sf::Vector2i& position) const;
 		const bool checkIfSpriteFit(const Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY) const;
 

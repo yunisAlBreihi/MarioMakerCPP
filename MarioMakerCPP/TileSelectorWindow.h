@@ -33,7 +33,7 @@ namespace editor
 		TileSelectorWindow(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);
 
 		void eventHandler() override;
-		void render(sf::RenderWindow* window) override;
+		void render(sf::RenderWindow& window) override;
 
 		const bool selectTile(universal::TileBase* tile);
 		const universal::TileBase* getCurrentSelection();

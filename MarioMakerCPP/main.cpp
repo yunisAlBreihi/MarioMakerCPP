@@ -8,7 +8,6 @@ int main()
 																						  sf::Vector2i(200, 200), 
 																				          "Mario Maker");
 
-	m_editor->start();
 	while (m_editor->gameRunning() == true) {
 		m_editor->eventHandler();
 		m_editor->render();

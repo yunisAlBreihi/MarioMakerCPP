@@ -48,7 +48,7 @@ namespace editor
 
 				std::unique_ptr<universal::Tile> t_tile = std::make_unique<universal::Tile>(t_spriteSize, t_texture);
 				t_tile->setPosition(sf::Vector2f(globals::TILE_SIZE * i, globals::TILE_SIZE * j));
-				t_sprite->addTile(std::move(&*t_tile));
+				t_sprite->addTile(std::move(*t_tile));
 			}
 		}
 
