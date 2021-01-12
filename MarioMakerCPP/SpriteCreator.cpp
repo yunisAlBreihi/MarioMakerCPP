@@ -20,11 +20,11 @@ namespace editor
 		return t_texture;
 	}
 
-	std::unique_ptr<universal::Sprite> SpriteCreator::CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize)
+	std::unique_ptr<universal::Sprite> SpriteCreator::CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize, const char& id)
 	{
 		const sf::Vector2f t_spriteSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
 
-		std::unique_ptr<universal::Sprite> t_sprite = std::make_unique<universal::Sprite>();
+		std::unique_ptr<universal::Sprite> t_sprite = std::make_unique<universal::Sprite>(id);
 		t_sprite->setBoundsSize(sf::Vector2f(spriteSize.x, spriteSize.y));
 
 		if ((spriteIndex % m_tileSheetLength) + spriteSize.x > m_tileSheetLength) {

@@ -8,26 +8,27 @@
 
 namespace universal
 {
-	class Grid : public universal::IRender
+	class Grid : public IRender
 	{
 	private:
-		std::vector<std::vector<std::unique_ptr<universal::Sprite>>> m_sprites;
-		std::vector<std::vector<std::unique_ptr<universal::SpritePart>>> m_spriteParts;
+		std::vector<std::vector<std::unique_ptr<Sprite>>> m_sprites;
+		std::vector<std::vector<std::unique_ptr<SpritePart>>> m_spriteParts;
 
 		unsigned int m_gridWidth = 0;
 		unsigned int m_gridHeight = 0;
 
 	private:
-		void createSpriteParts(const universal::Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY);
-		//bool checkSpriteParts(const unsigned int& indexX, const unsigned int& indexY) const;
+		void createSpriteParts(const Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY);
 
 	public:
 		Grid(const sf::Vector2i& resolution);
 		void render(sf::RenderWindow* window) override;
 
-		void addSprite(const universal::Sprite* sprite);
-		void addSpriteAtPosition(const universal::Sprite* sprite, const sf::Vector2i& position);
-		const universal::Sprite* getSpriteAtPosition(const sf::Vector2i& position) const;
-		const bool checkIfSpriteFit(const universal::Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY) const;
+		void addSprite(const Sprite* sprite);
+		void addSpriteAtPosition(const Sprite* sprite, const sf::Vector2i& position);
+		const Sprite* getSpriteAtPosition(const sf::Vector2i& position) const;
+		const bool checkIfSpriteFit(const Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY) const;
+
+		const std::vector<std::vector<std::unique_ptr<Sprite>>>& getSprites() const;
 	};
 }

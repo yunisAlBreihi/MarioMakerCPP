@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "TileSelectorWindow.h"
 #include "Grid.h"
+#include "SaveHandler.h"
 
 
 namespace editor
@@ -9,10 +10,13 @@ namespace editor
 	class EditorWorld
 	{
 	private:
-		std::unique_ptr<universal::Grid> m_grid = nullptr;
-
 		std::unique_ptr<sf::RenderWindow> m_window = nullptr;
 		std::unique_ptr<TileSelectorWindow> m_tileSelectorWindow = nullptr;
+
+		std::unique_ptr<universal::Grid> m_grid = nullptr;
+		SaveHandler m_saveHandler;
+
+
 		sf::Event m_event;
 
 		bool m_gameRunning = false;

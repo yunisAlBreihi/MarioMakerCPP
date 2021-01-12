@@ -100,4 +100,10 @@ namespace universal
 			}
 		}
 	}
+
+	const std::vector<std::vector<std::unique_ptr<Sprite>>>& Grid::getSprites() const
+	{
+		return m_sprites;
+	}
+
 }

@@ -3,7 +3,7 @@
 
 namespace universal
 {
-	Sprite::Sprite(){}
+	Sprite::Sprite(const char& id) : m_id(id) { }
 
 	Sprite::Sprite(const Sprite& other) noexcept
 	{
@@ -11,6 +11,7 @@ namespace universal
 			m_tiles.emplace_back(std::make_unique<Tile>(*t_tile));
 		}
 		m_boundsSize = other.m_boundsSize;
+		m_id = other.m_id;
 	}
 
 	void Sprite::render(sf::RenderWindow* window)
@@ -52,5 +53,10 @@ namespace universal
 	const sf::Vector2f& Sprite::getPosition() const
 	{
 		return m_tiles[0]->getPosition();
+	}
+
+	const char& Sprite::getId() const
+	{
+		return m_id;
 	}
 }

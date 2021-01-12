@@ -10,6 +10,8 @@ namespace globals
 	static const sf::Color UNHIGHLIGHTED_COLOR = sf::Color(0,0,0,255);
 	static const sf::Color HIGHLIGHTED_COLOR = sf::Color(255,0,0,255);
 
+	static const char* PATH_TILESHEET = "Sprites/SMB_tiles_tilesheet.png";
+
 	static const sf::Vector2i& getPositionInWindow(const sf::Vector2i& position, sf::RenderWindow* window)
 	{
 		//the extra 30.0f in "y" is compensate for the the window top ribbon

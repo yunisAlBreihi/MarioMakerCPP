@@ -16,6 +16,6 @@ namespace editor
 
 	public:
 		sf::Texture CreateSprite(const char* spritePath, const unsigned int spriteIndex);
-		std::unique_ptr<universal::Sprite> CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize);
+		std::unique_ptr<universal::Sprite> CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize, const char& id);
 	};
 }

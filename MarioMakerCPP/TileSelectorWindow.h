@@ -23,8 +23,12 @@ namespace editor
 		
 		std::unique_ptr<SpriteCreator> m_spriteCreator = nullptr;
 
-		std::unique_ptr<universal::Sprite> m_pipeSprite = nullptr;
 		std::unique_ptr<universal::Sprite> m_solidBlockSprite = nullptr;
+		std::unique_ptr<universal::Sprite> m_breakableBlockSprite = nullptr;
+		std::unique_ptr<universal::Sprite> m_coinBlockSprite = nullptr;
+		std::unique_ptr<universal::Sprite> m_noteBlockSprite = nullptr;
+		std::unique_ptr<universal::Sprite> m_groundBlockSprite = nullptr;
+		std::unique_ptr<universal::Sprite> m_pipeSprite = nullptr;
 	public:
 		TileSelectorWindow(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);
 

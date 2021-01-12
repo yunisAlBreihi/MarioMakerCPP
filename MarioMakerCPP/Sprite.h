@@ -13,8 +13,10 @@ namespace universal
 		std::vector<std::unique_ptr<Tile>> m_tiles;
 		sf::Vector2f m_boundsSize;
 
+		char m_id = '#';
+
 	public:
-		const Sprite();
+		const Sprite(const char& id);
 		const Sprite(const Sprite& other) noexcept;
 
 		void render(sf::RenderWindow* window) override;
@@ -25,5 +27,6 @@ namespace universal
 		const sf::Vector2f& getBoundsSize() const;
 		void setPosition(const sf::Vector2f position);
 		const sf::Vector2f& getPosition() const;
+		const char& getId() const;
 	};
 }
