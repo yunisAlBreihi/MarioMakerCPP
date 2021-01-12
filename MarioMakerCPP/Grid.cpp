@@ -64,6 +64,20 @@ namespace universal
 		}
 	}
 
+	void Grid::removeSpriteAtPosition(const sf::Vector2i& position)
+	{
+		const unsigned int t_gridPosX = position.x / globals::TILE_SIZE;
+		const unsigned int t_gridPosY = position.y / globals::TILE_SIZE;
+
+		const universal::Sprite* t_sprite = getSpriteAtPosition(sf::Vector2i(position.x, position.y));
+
+		if (t_sprite != nullptr) {
+
+			removeSpriteParts(*t_sprite, t_gridPosX, t_gridPosY);
+			m_sprites[t_gridPosX][t_gridPosY] = nullptr;
+		}
+	}
+
 	const universal::Sprite* Grid::getSpriteAtPosition(const sf::Vector2i& position) const
 	{
 		const unsigned int gridPosX = position.x / globals::TILE_SIZE;
@@ -95,6 +109,15 @@ namespace universal
 		for (int x = 0; x < sprite.getBoundsSize().x; ++x) {
 			for (int y = 0; y < sprite.getBoundsSize().y; ++y) {
 				m_spriteParts[indexX + x][indexY + y] = std::make_unique<universal::SpritePart>(sprite);
+			}
+		}
+	}
+
+	void Grid::removeSpriteParts(const Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY)
+	{
+		for (int x = 0; x < sprite.getBoundsSize().x; ++x) {
+			for (int y = 0; y < sprite.getBoundsSize().y; ++y) {
+				m_spriteParts[indexX + x][indexY + y] = nullptr;
 			}
 		}
 	}

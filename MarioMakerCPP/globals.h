@@ -12,17 +12,17 @@ namespace globals
 
 	static const char* PATH_TILESHEET = "Sprites/SMB_tiles_tilesheet.png";
 
-	static const sf::Vector2i& getPositionInWindow(const sf::Vector2i& position, sf::RenderWindow* window)
+	static const sf::Vector2i& getPositionInWindow(const sf::Vector2i& position, const sf::RenderWindow& window)
 	{
 		//the extra 30.0f in "y" is compensate for the the window top ribbon
-		return sf::Vector2i(position.x - window->getPosition().x,
-							position.y - window->getPosition().y - 30.0f);
+		return sf::Vector2i(position.x - window.getPosition().x,
+							position.y - window.getPosition().y - 30.0f);
 	}
 
-	static bool isPositionInWindow(const sf::Vector2i& position, sf::RenderWindow* window)
+	static bool isPositionInWindow(const sf::Vector2i& position, const sf::RenderWindow& window)
 	{
-		const sf::Vector2i t_posInWindow = sf::Vector2i(position.x - window->getPosition().x, position.y - window->getPosition().y - 30.0f);
-		const sf::Vector2u t_windowSize = window->getSize();
+		const sf::Vector2i t_posInWindow = sf::Vector2i(position.x - window.getPosition().x, position.y - window.getPosition().y - 30.0f);
+		const sf::Vector2u t_windowSize = window.getSize();
 
 		if (t_posInWindow.x < 0 || t_posInWindow.y < 0 || 
 			t_posInWindow.x > t_windowSize.x ||

@@ -37,11 +37,17 @@ namespace editor
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
-			if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true) {
+			if (globals::isPositionInWindow(sf::Mouse::getPosition(), *m_window) == true) {
 				if (m_tileSelectorWindow->getSelected() != nullptr) {
-					sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
+					sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), *m_window);
 					m_grid->addSpriteAtPosition(*m_tileSelectorWindow->getSelected(), t_mousePos);
 				}
+			}
+		}
+		else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) == true) {
+			if (globals::isPositionInWindow(sf::Mouse::getPosition(), *m_window) == true) {
+				sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), *m_window);
+				m_grid->removeSpriteAtPosition(t_mousePos);
 			}
 		}
 	}

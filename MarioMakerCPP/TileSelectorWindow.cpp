@@ -39,8 +39,8 @@ namespace editor
 			}
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
-				if (globals::isPositionInWindow(sf::Mouse::getPosition(), &*m_window) == true) {
-					sf::Vector2i t_windowPos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
+				if (globals::isPositionInWindow(sf::Mouse::getPosition(), *m_window) == true) {
+					sf::Vector2i t_windowPos = globals::getPositionInWindow(sf::Mouse::getPosition(), *m_window);
 					const universal::Sprite* t_sprite = m_grid->getSpriteAtPosition(t_windowPos);
 
 					if (t_sprite != nullptr) {
@@ -63,7 +63,7 @@ namespace editor
 
 	const bool TileSelectorWindow::selectTile(universal::TileBase* tile)
 	{
-		const sf::Vector2i t_localMousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), &*m_window);
+		const sf::Vector2i t_localMousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), *m_window);
 		const sf::Vector2f t_tilePos = tile->getPosition();
 		const sf::Vector2f t_tileSize = tile->getSize();
 
