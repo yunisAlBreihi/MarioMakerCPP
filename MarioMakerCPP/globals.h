@@ -6,11 +6,17 @@ namespace globals
 {
 	static const unsigned int TILE_SIZE = 32;
 
+	static const sf::Vector2i EDITOR_RESOLUTION = sf::Vector2i(1280, 720);
+	static const sf::Vector2i TILESELECTOR_RESOLUTION = sf::Vector2i(200, 700);
+
 	static const sf::Color GRAY = sf::Color(128, 128, 128, 255);
 	static const sf::Color UNHIGHLIGHTED_COLOR = sf::Color(0,0,0,255);
 	static const sf::Color HIGHLIGHTED_COLOR = sf::Color(255,0,0,255);
 
 	static const char* PATH_TILESHEET = "Sprites/SMB_tiles_tilesheet.png";
+
+	template<typename T>
+	using Vector2D = std::vector<std::vector<T>>;
 
 	static const sf::Vector2i& getPositionInWindow(const sf::Vector2i& position, const sf::RenderWindow& window)
 	{

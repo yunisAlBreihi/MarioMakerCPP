@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "TileSelectorWindow.h"
 #include "Grid.h"
-#include "SaveHandler.h"
+#include "IOHandler.h"
 
 
 namespace editor
@@ -14,7 +14,7 @@ namespace editor
 		std::unique_ptr<TileSelectorWindow> m_tileSelectorWindow = nullptr;
 
 		std::unique_ptr<universal::Grid> m_grid = nullptr;
-		SaveHandler m_saveHandler;
+		IOHandler m_saveHandler;
 
 		sf::Event m_event;
 

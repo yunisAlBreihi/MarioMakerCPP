@@ -1,10 +1,11 @@
-#include "SaveHandler.h"
+#include "IOHandler.h"
 #include <iostream>
 #include <fstream>
+#include "globals.h"
 
 namespace editor
 {
-	void SaveHandler::saveGrid(const universal::Grid& grid)
+	void IOHandler::saveGrid(const universal::Grid& grid)
 	{
 		std::ofstream t_myFile;
 		t_myFile.open(m_fileName);
@@ -22,5 +23,16 @@ namespace editor
 			}
 			t_myFile << m_newLine;
 		}
+	}
+
+	const universal::Grid& IOHandler::loadGrid()
+	{
+		universal::Grid t_grid = universal::Grid(globals::EDITOR_RESOLUTION);
+
+		//for (size_t i = 0; i < t_grid->; i++)
+		//{
+
+		//}
+		return t_grid;
 	}
 }

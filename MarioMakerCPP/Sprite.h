@@ -20,7 +20,6 @@ namespace universal
 		const Sprite(const Sprite& other) noexcept;
 
 		void render(sf::RenderWindow& window) override;
-
 		void addTile(const Tile& tile);
 
 		void setBoundsSize(const sf::Vector2f& size);

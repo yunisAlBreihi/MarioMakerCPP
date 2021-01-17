@@ -45,7 +45,7 @@
     <ClCompile Include="SpritePart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SaveHandler.cpp">
+    <ClCompile Include="IOHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +83,7 @@
     <ClInclude Include="SpritePart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SaveHandler.h">
+    <ClInclude Include="IOHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

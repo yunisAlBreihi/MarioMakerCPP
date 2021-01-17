@@ -5,21 +5,21 @@
 #include "TileBase.h"
 #include "Sprite.h"
 #include "SpritePart.h"
+#include "globals.h"
 
 namespace universal
 {
 	class Grid : public IRender
 	{
 	private:
-		std::vector<std::vector<std::unique_ptr<Sprite>>> m_sprites;
-		std::vector<std::vector<std::unique_ptr<SpritePart>>> m_spriteParts;
+		globals::Vector2D<std::unique_ptr<Sprite>> m_sprites;
+		globals::Vector2D<std::unique_ptr<SpritePart>> m_spriteParts;
 
-		unsigned int m_gridWidth = 0;
-		unsigned int m_gridHeight = 0;
+		sf::Vector2i m_gridSize;
 
 	private:
 		void createSpriteParts(const Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY);
-		void removeSpriteParts(const Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY);
+		void removeSprite(const Sprite& sprite);
 
 	public:
 		Grid(const sf::Vector2i& resolution);
@@ -31,6 +31,6 @@ namespace universal
 		const Sprite* getSpriteAtPosition(const sf::Vector2i& position) const;
 		const bool checkIfSpriteFit(const Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY) const;
 
-		const std::vector<std::vector<std::unique_ptr<Sprite>>>& getSprites() const;
+		inline const auto& getSprites() const { return m_sprites; }
 	};
 }
