@@ -5,10 +5,10 @@
 
 namespace editor
 {
-	void IOHandler::saveGrid(universal::Grid& gridToSaveTo)
+	void IOHandler::saveGrid(universal::Grid& gridToSaveTo, const char* filename)
 	{
 		std::ofstream t_myFile;
-		t_myFile.open(m_fileName);
+		t_myFile.open(filename);
 
 		if (t_myFile.is_open() == true) {
 			const auto& t_sprites = gridToSaveTo.getSprites();
@@ -27,12 +27,12 @@ namespace editor
 		}
 	}
 
-	void IOHandler::loadGrid(const editor::SpriteCreator& spriteCreator, universal::Grid& grid)
+	void IOHandler::loadGrid(const editor::SpriteCreator& spriteCreator, universal::Grid& grid, const char* filename)
 	{
 		universal::Grid t_grid = universal::Grid(globals::EDITOR_RESOLUTION);
 
 		std::ifstream t_myFile;
-		t_myFile.open(m_fileName);
+		t_myFile.open(filename);
 
 		if (t_myFile.is_open() == true) {
 			std::string t_line;

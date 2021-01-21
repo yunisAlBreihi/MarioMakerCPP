@@ -30,7 +30,7 @@ namespace editor
 		m_gameRunning = true;
 		
 		if (m_loadLevel == true) {
-			m_IOHandler.loadGrid(*m_spriteCreator, *m_grid);
+			m_IOHandler.loadGrid(*m_spriteCreator, *m_grid, "MarioLevel1.txt");
 		}
 	}
 
@@ -42,7 +42,7 @@ namespace editor
 				m_gameRunning = false;
 
 				if (m_saveLevel == true) {
-					m_IOHandler.saveGrid(*m_grid);
+					m_IOHandler.saveGrid(*m_grid, "MarioLevel1.txt");
 				}
 			}
 		}

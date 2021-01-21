@@ -11,7 +11,6 @@ namespace editor
 		m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(resolution.x, resolution.y), windowName);
 		m_window->setPosition(position);
 		m_grid = std::make_unique<universal::Grid>(resolution);
-		//m_spriteCreator = std::make_unique<SpriteCreator>();
 
 		m_grid->addSprite(spriteCreator.getSpriteById('0'));
 		m_grid->addSprite(spriteCreator.getSpriteById('1'));
@@ -19,24 +18,6 @@ namespace editor
 		m_grid->addSprite(spriteCreator.getSpriteById('4'));
 		m_grid->addSprite(spriteCreator.getSpriteById('5'));
 		m_grid->addSprite(spriteCreator.getSpriteById('6'));
-
-		//m_breakableBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 1, sf::Vector2i(1, 1), '0'));
-		//m_grid->addSprite(*m_breakableBlockSprite);
-
-		//m_coinBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 2, sf::Vector2i(1, 1), '1'));
-		//m_grid->addSprite(*m_coinBlockSprite);
-
-		//m_noteBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 4, sf::Vector2i(1, 1), '3'));
-		//m_grid->addSprite(*m_noteBlockSprite);
-
-		//m_solidBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 6, sf::Vector2i(1, 1), '4'));
-		//m_grid->addSprite(*m_solidBlockSprite);
-
-		//m_groundBlockSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 121, sf::Vector2i(1, 1), '5'));
-		//m_grid->addSprite(*m_groundBlockSprite);
-
-		//m_pipeSprite = std::move(m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 14, sf::Vector2i(2, 2), '9'));
-		//m_grid->addSprite(*m_pipeSprite);
 	}
 
 	void TileSelectorWindow::eventHandler()

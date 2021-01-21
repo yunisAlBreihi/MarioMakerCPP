@@ -11,7 +11,7 @@ namespace editor
 		static const char m_empty = '#';
 		static const char m_newLine = '\n';
 	public:
-		static void saveGrid(universal::Grid& gridToSaveTo);
-		static void loadGrid(const editor::SpriteCreator& spriteCreator, universal::Grid& gridToLoadTo);
+		static void saveGrid(universal::Grid& gridToSaveTo, const char* filename);
+		static void loadGrid(const editor::SpriteCreator& spriteCreator, universal::Grid& gridToLoadTo, const char* filename);
 	};
 }
