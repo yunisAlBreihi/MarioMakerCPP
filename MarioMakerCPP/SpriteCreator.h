@@ -9,6 +9,8 @@ namespace editor
 	class SpriteCreator
 	{
 	private:
+		std::vector<std::unique_ptr<universal::Sprite>> m_sprites;
+
 		const unsigned int m_headerSize = 11;
 		const unsigned int m_separatorSize = 1;
 		const unsigned int m_tileSheetLength = 16;
@@ -16,6 +18,8 @@ namespace editor
 
 	public:
 		sf::Texture CreateSprite(const char* spritePath, const unsigned int spriteIndex);
-		std::unique_ptr<universal::Sprite> CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize, const char& id);
+		void CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize, const char& id);
+
+		const universal::Sprite& getSpriteById(const char& id) const;
 	};
 }

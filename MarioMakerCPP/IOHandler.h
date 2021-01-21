@@ -1,7 +1,8 @@
 #pragma once
 #include "Grid.h"
+#include "SpriteCreator.h"
 
-namespace editor 
+namespace editor
 {
 	class IOHandler
 	{
@@ -10,7 +11,7 @@ namespace editor
 		static const char m_empty = '#';
 		static const char m_newLine = '\n';
 	public:
-		static void saveGrid(const universal::Grid& grid);
-		static const universal::Grid& loadGrid();
+		static void saveGrid(universal::Grid& gridToSaveTo);
+		static void loadGrid(const editor::SpriteCreator& spriteCreator, universal::Grid& gridToLoadTo);
 	};
 }

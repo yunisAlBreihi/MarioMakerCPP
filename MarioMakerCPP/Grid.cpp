@@ -33,7 +33,7 @@ namespace universal
 		for (size_t y = 0; y < m_gridSize.y; y++) {
 			for (size_t x = 0; x < m_gridSize.x; x++) {
 				if (m_spriteParts[y][x] == nullptr && m_sprites[y][x] == nullptr) {
-					if (checkIfSpriteFit(sprite, x, y))	{
+					if (checkIfSpriteFit(sprite, x, y)) {
 						m_sprites[y][x] = std::make_unique<universal::Sprite>(universal::Sprite(sprite));
 						createSpriteParts(sprite, x, y);
 						m_sprites[y][x]->setPosition(sf::Vector2f(x * globals::TILE_SIZE, y * globals::TILE_SIZE));
@@ -80,7 +80,11 @@ namespace universal
 		const unsigned int gridPosX = position.x / globals::TILE_SIZE;
 		const unsigned int gridPosY = position.y / globals::TILE_SIZE;
 
-		if (m_spriteParts[gridPosY][gridPosX].get() != nullptr)	{
+		if (gridPosX > m_spriteParts[0].size() - 1 || gridPosY > m_spriteParts.size() - 1) {
+			return nullptr;
+		}
+
+		if (m_spriteParts[gridPosY][gridPosX].get() != nullptr) {
 			return &(m_spriteParts[gridPosY][gridPosX]->getSprite());
 		}
 		else {
@@ -94,7 +98,7 @@ namespace universal
 
 		for (int y = 0; y < t_bounds.y; ++y) {
 			for (int x = 0; x < t_bounds.x; ++x) {
-				if ( indexY + y > m_gridSize.y - 1 || indexX + x > m_gridSize.x - 1 ||
+				if (indexY + y > m_gridSize.y - 1 || indexX + x > m_gridSize.x - 1 ||
 					m_spriteParts[indexY + y][indexX + x] != nullptr) {
 					return false;
 				}

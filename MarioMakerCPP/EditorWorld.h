@@ -13,12 +13,16 @@ namespace editor
 		std::unique_ptr<sf::RenderWindow> m_window = nullptr;
 		std::unique_ptr<TileSelectorWindow> m_tileSelectorWindow = nullptr;
 
+		std::unique_ptr<SpriteCreator> m_spriteCreator = nullptr;
+
 		std::unique_ptr<universal::Grid> m_grid = nullptr;
-		IOHandler m_saveHandler;
+		IOHandler m_IOHandler;
 
 		sf::Event m_event;
 
 		bool m_gameRunning = false;
+		bool m_loadLevel = true;
+		bool m_saveLevel = true;
 
 	public:
 		EditorWorld(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);

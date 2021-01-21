@@ -12,13 +12,26 @@ namespace editor
 		m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(resolution.x, resolution.y), windowName);
 		m_window->setPosition(position);
 
-		m_tileSelectorWindow = std::make_unique<TileSelectorWindow>(sf::Vector2i(200, 720), 
-																	sf::Vector2i(position.x + resolution.x, position.y), 
+		m_spriteCreator = std::make_unique<SpriteCreator>();
+		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 1, sf::Vector2i(1, 1), '0');
+		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 2, sf::Vector2i(1, 1), '1');
+		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 4, sf::Vector2i(1, 1), '3');
+		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 6, sf::Vector2i(1, 1), '4');
+		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 121, sf::Vector2i(1, 1), '5');
+		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 14, sf::Vector2i(2, 2), '6');
+
+		m_tileSelectorWindow = std::make_unique<TileSelectorWindow>(*m_spriteCreator,
+																	sf::Vector2i(200, 720),
+																	sf::Vector2i(position.x + resolution.x, position.y),
 																	"Tile Selector");
 
 		m_grid = std::make_unique<universal::Grid>(resolution);
 
 		m_gameRunning = true;
+		
+		if (m_loadLevel == true) {
+			m_IOHandler.loadGrid(*m_spriteCreator, *m_grid);
+		}
 	}
 
 	void EditorWorld::eventHandler()
@@ -28,7 +41,9 @@ namespace editor
 				m_window->close();
 				m_gameRunning = false;
 
-				m_saveHandler.saveGrid(*m_grid);
+				if (m_saveLevel == true) {
+					m_IOHandler.saveGrid(*m_grid);
+				}
 			}
 		}
 

@@ -20,7 +20,7 @@ namespace editor
 		return t_texture;
 	}
 
-	std::unique_ptr<universal::Sprite> SpriteCreator::CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize, const char& id)
+	void SpriteCreator::CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize, const char& id)
 	{
 		const sf::Vector2f t_spriteSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
 
@@ -51,7 +51,16 @@ namespace editor
 				t_sprite->addTile(std::move(*t_tile));
 			}
 		}
+		m_sprites.push_back(std::move(t_sprite));
+	}
 
-		return t_sprite;
+	const universal::Sprite& SpriteCreator::getSpriteById(const char& id) const
+	{
+		for (auto& t_sprite : m_sprites) {
+			if (t_sprite->getId() == id) {
+				return *t_sprite;
+			}
+		}
+		return NULL;
 	}
 }
