@@ -157,6 +157,7 @@
     <ClCompile Include="TileBase.cpp" />
     <ClCompile Include="SpriteCreator.cpp" />
     <ClCompile Include="TileSelectorWindow.cpp" />
+    <ClCompile Include="WindowBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EditorWorld.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="TileBase.h" />
     <ClInclude Include="SpriteCreator.h" />
     <ClInclude Include="TileSelectorWindow.h" />
+    <ClInclude Include="WindowBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
