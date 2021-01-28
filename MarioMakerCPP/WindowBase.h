@@ -13,7 +13,7 @@ namespace editor
 {
 	class WindowBase : public universal::IEventHandler, public universal::IRender
 	{
-	private:
+	protected:
 		std::unique_ptr<sf::RenderWindow> m_window = nullptr;
 		sf::Event m_event;
 

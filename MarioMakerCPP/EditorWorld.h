@@ -3,7 +3,7 @@
 #include "TileSelectorWindow.h"
 #include "Grid.h"
 #include "IOHandler.h"
-
+#include "BGSelectorWindow.h"
 
 namespace editor
 {
@@ -12,6 +12,7 @@ namespace editor
 	private:
 		std::unique_ptr<sf::RenderWindow> m_window = nullptr;
 		std::unique_ptr<TileSelectorWindow> m_tileSelectorWindow = nullptr;
+		std::unique_ptr<BGSelectorWindow> m_bgSelectorWindow = nullptr;
 
 		std::unique_ptr<SpriteCreator> m_spriteCreator = nullptr;
 

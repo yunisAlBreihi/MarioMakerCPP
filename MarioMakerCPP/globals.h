@@ -13,7 +13,8 @@ namespace globals
 	static const sf::Color UNHIGHLIGHTED_COLOR = sf::Color(0,0,0,255);
 	static const sf::Color HIGHLIGHTED_COLOR = sf::Color(255,0,0,255);
 
-	static const char* PATH_TILESHEET = "Sprites/SMB_tiles_tilesheet.png";
+	static const char* TILE_TILESHEET_PATH = "Sprites/SMB_tiles_tilesheet.png";
+	static const char* BG_TILESHEET_PATH = "Sprites/SMB_backgrounds_tilesheet.png";
 
 	template<typename T>
 	using Vector2D = std::vector<std::vector<T>>;

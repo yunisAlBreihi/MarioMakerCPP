@@ -51,6 +51,9 @@
     <ClCompile Include="WindowBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BGSelectorWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EditorWorld.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BGSelectorWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

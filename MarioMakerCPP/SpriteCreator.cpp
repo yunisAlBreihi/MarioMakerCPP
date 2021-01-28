@@ -20,25 +20,26 @@ namespace editor
 		return t_texture;
 	}
 
-	void SpriteCreator::CreateSprite(const char* spritePath, unsigned int spriteIndex, const sf::Vector2i& spriteSize, const char& id)
+	void SpriteCreator::CreateSprite(const char* spritePath, sf::Vector2u spriteIndex, const sf::Vector2i& spriteSize, const char& id)
 	{
 		const sf::Vector2f t_spriteSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
+		int t_spriteIndex = (spriteIndex.y * globals::TILE_SIZE) + spriteIndex.x;
 
 		std::unique_ptr<universal::Sprite> t_sprite = std::make_unique<universal::Sprite>(id);
 		t_sprite->setBoundsSize(sf::Vector2f(spriteSize.x, spriteSize.y));
 
-		if ((spriteIndex % m_tileSheetLength) + spriteSize.x > m_tileSheetLength) {
-			const unsigned int t_quotient = spriteIndex / m_tileSheetLength;
-			spriteIndex = (m_tileSheetLength * t_quotient) + (m_tileSheetLength - spriteSize.x);
+		if ((t_spriteIndex % m_tileSheetLength) + spriteSize.x > m_tileSheetLength) {
+			const unsigned int t_quotient = t_spriteIndex / m_tileSheetLength;
+			t_spriteIndex = (m_tileSheetLength * t_quotient) + (m_tileSheetLength - spriteSize.x);
 		}
 
 		for (size_t i = 0; i < spriteSize.x; ++i) {
-			const unsigned int t_col = (spriteIndex + i) % m_tileSheetLength;
+			const unsigned int t_col = (t_spriteIndex + i) % m_tileSheetLength;
 			const unsigned int t_numOfColSeparators = 1 + (m_separatorSize * t_col);
 			const unsigned int t_colIndex = t_numOfColSeparators + (t_col * m_tileSize);
 
 			for (size_t j = 0; j < spriteSize.y; ++j) {
-				const unsigned int t_row = (spriteIndex + ((m_tileSize - 1) * j)) / m_tileSheetLength;
+				const unsigned int t_row = (t_spriteIndex + ((m_tileSize - 1) * j)) / m_tileSheetLength;
 				const unsigned int t_numOfRowSeparators = (1 + (m_separatorSize * t_row)) + (m_headerSize * 2);
 				const unsigned int t_rowIndex = t_numOfRowSeparators + (t_row * m_tileSize);
 

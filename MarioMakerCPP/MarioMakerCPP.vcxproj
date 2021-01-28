@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BGSelectorWindow.cpp" />
     <ClCompile Include="EditorWorld.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="WindowBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BGSelectorWindow.h" />
     <ClInclude Include="EditorWorld.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="Grid.h" />

@@ -6,31 +6,39 @@
 namespace editor
 {
 	EditorWorld::EditorWorld(const sf::Vector2i& resolution,
-							 const sf::Vector2i& position,
-							 const char* windowName)
+		const sf::Vector2i& position,
+		const char* windowName)
 	{
 		m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(resolution.x, resolution.y), windowName);
 		m_window->setPosition(position);
 
 		m_spriteCreator = std::make_unique<SpriteCreator>();
-		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 1, sf::Vector2i(1, 1), '0');
-		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 2, sf::Vector2i(1, 1), '1');
-		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 4, sf::Vector2i(1, 1), '3');
-		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 6, sf::Vector2i(1, 1), '4');
-		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 121, sf::Vector2i(1, 1), '5');
-		m_spriteCreator->CreateSprite(globals::PATH_TILESHEET, 14, sf::Vector2i(2, 2), '6');
+		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(1, 0), sf::Vector2i(1, 1), '0');
+		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(2, 0), sf::Vector2i(1, 1), '1');
+		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(4, 0), sf::Vector2i(1, 1), '3');
+		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(6, 0), sf::Vector2i(1, 1), '4');
+		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(15, 7), sf::Vector2i(1, 1), '5');
+		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(14, 0), sf::Vector2i(2, 2), '6');
+
+		m_spriteCreator->CreateSprite(globals::BG_TILESHEET_PATH, sf::Vector2u(1, 12), sf::Vector2i(2, 2), 'a');
 
 		m_tileSelectorWindow = std::make_unique<TileSelectorWindow>(*m_spriteCreator,
-																	sf::Vector2i(200, 720),
-																	sf::Vector2i(position.x + resolution.x, position.y),
-																	"Tile Selector");
+			sf::Vector2i(200, 720),
+			sf::Vector2i(position.x + resolution.x, position.y),
+			"Tile Selector");
+
+		m_bgSelectorWindow = std::make_unique<BGSelectorWindow>(*m_spriteCreator,
+			sf::Vector2i(200, 720),
+			sf::Vector2i(position.x - 200, position.y),
+			"Background Selector");
 
 		m_grid = std::make_unique<universal::Grid>(resolution);
 
 		m_gameRunning = true;
-		
+
 		if (m_loadLevel == true) {
 			m_IOHandler.loadGrid(*m_spriteCreator, *m_grid, "MarioLevel1.txt");
+			//m_grid->clearGrid();
 		}
 	}
 
@@ -53,9 +61,9 @@ namespace editor
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
 			if (globals::isPositionInWindow(sf::Mouse::getPosition(), *m_window) == true) {
-				if (m_tileSelectorWindow->getSelected() != nullptr) {
+				if (&m_tileSelectorWindow->getSelected() != nullptr) {
 					sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), *m_window);
-					m_grid->addSpriteAtPosition(*m_tileSelectorWindow->getSelected(), t_mousePos);
+					m_grid->addSpriteAtPosition(m_tileSelectorWindow->getSelected(), t_mousePos);
 				}
 			}
 		}
@@ -71,8 +79,9 @@ namespace editor
 	{
 		m_window->clear();
 
-		//Render things here
+		//Render things here, between the clear and display.
 		m_tileSelectorWindow->render(*m_window);
+		m_bgSelectorWindow->render(*m_window);
 		m_grid->render(*m_window);
 
 		m_window->display();

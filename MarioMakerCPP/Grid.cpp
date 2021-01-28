@@ -132,4 +132,14 @@ namespace universal
 		}
 		m_sprites[t_gridPosY][t_gridPosX].reset();
 	}
+
+	void Grid::clearGrid()
+	{
+		for (size_t y = 0; y < m_gridSize.y; y++) {
+			for (size_t x = 0; x < m_gridSize.x; x++) {
+				m_sprites[y][x] = nullptr;
+				m_spriteParts[y][x] = nullptr;
+			}
+		}
+	}
 }

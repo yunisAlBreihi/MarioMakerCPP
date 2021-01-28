@@ -31,6 +31,8 @@ namespace universal
 		const Sprite* getSpriteAtPosition(const sf::Vector2i& position) const;
 		const bool checkIfSpriteFit(const Sprite& sprite, const unsigned int& indexX, const unsigned int& indexY) const;
 
+		void clearGrid();
+
 		inline auto& getSprites() { return m_sprites; }
 	};
 }
