@@ -7,10 +7,8 @@
 #include "SpritePart.h"
 #include "globals.h"
 
-namespace universal
-{
-	class Grid : public IRender
-	{
+namespace universal {
+	class Grid : public IRender	{
 	private:
 		globals::Vector2D<std::unique_ptr<Sprite>> m_sprites;
 		globals::Vector2D<std::unique_ptr<SpritePart>> m_spriteParts;

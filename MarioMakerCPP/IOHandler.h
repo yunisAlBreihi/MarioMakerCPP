@@ -2,10 +2,8 @@
 #include "Grid.h"
 #include "SpriteCreator.h"
 
-namespace editor
-{
-	class IOHandler
-	{
+namespace editor {
+	class IOHandler	{
 	private:
 		inline static const char* m_fileName = "MarioLevel.txt";
 		static const char m_empty = '#';

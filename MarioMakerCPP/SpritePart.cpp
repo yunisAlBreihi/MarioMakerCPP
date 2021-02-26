@@ -1,10 +1,8 @@
 #include "SpritePart.h"
-namespace universal 
-{
+namespace universal {
 	SpritePart::SpritePart(const Sprite& parent) : m_parent(parent) {}
 
-	const Sprite& SpritePart::getSprite() const
-	{
+	const Sprite& SpritePart::getSprite() const {
 		return m_parent;
 	}
 }

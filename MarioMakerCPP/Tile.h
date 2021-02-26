@@ -5,10 +5,8 @@
 #include "SFML/Graphics/Texture.hpp"
 #include "IRender.h"
 
-namespace universal 
-{
-	class Tile : public IRender
-	{
+namespace universal {
+	class Tile : public IRender {
 	private:
 		std::unique_ptr<sf::RectangleShape> m_body = nullptr;
 

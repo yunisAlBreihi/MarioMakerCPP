@@ -4,11 +4,10 @@
 #include "Grid.h"
 #include "IOHandler.h"
 #include "BGSelectorWindow.h"
+#include "Background.h";
 
-namespace editor
-{
-	class EditorWorld
-	{
+namespace editor {
+	class EditorWorld 	{
 	private:
 		std::unique_ptr<sf::RenderWindow> m_window = nullptr;
 		std::unique_ptr<TileSelectorWindow> m_tileSelectorWindow = nullptr;
@@ -24,6 +23,8 @@ namespace editor
 		bool m_gameRunning = false;
 		bool m_loadLevel = true;
 		bool m_saveLevel = true;
+
+		std::unique_ptr<editor::Background> m_background;
 
 	public:
 		EditorWorld(const sf::Vector2i& resolution, const sf::Vector2i& position, const char* windowName);

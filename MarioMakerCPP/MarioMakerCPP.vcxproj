@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="BGSelectorWindow.cpp" />
     <ClCompile Include="EditorWorld.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -159,8 +160,10 @@
     <ClCompile Include="SpriteCreator.cpp" />
     <ClCompile Include="TileSelectorWindow.cpp" />
     <ClCompile Include="WindowBase.cpp" />
+    <ClCompile Include="WorldObjects.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="BGSelectorWindow.h" />
     <ClInclude Include="EditorWorld.h" />
     <ClInclude Include="globals.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="SpriteCreator.h" />
     <ClInclude Include="TileSelectorWindow.h" />
     <ClInclude Include="WindowBase.h" />
+    <ClInclude Include="WorldObjects.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

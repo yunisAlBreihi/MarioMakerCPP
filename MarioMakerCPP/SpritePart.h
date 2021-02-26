@@ -2,10 +2,8 @@
 #include "Sprite.h"
 #include "SFML/System/Vector2.hpp"
 
-namespace universal 
-{
-	class SpritePart
-	{
+namespace universal {
+	class SpritePart {
 	private:
 		const Sprite& m_parent;
 

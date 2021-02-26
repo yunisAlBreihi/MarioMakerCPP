@@ -5,10 +5,8 @@
 #include "Tile.h"
 #include "IRender.h"
 
-namespace universal
-{
-	class Sprite : public IRender
-	{
+namespace universal {
+	class Sprite : public IRender {
 	private:
 		std::vector<std::unique_ptr<Tile>> m_tiles;
 		sf::Vector2f m_boundsSize;
@@ -16,6 +14,7 @@ namespace universal
 		char m_id = '#';
 
 	public:
+		Sprite(const sf::Vector2f& position);
 		const Sprite(const char& id);
 		const Sprite(const Sprite& other) noexcept;
 

@@ -1,10 +1,8 @@
 #include "SpriteCreator.h"
 #include "globals.h"
 
-namespace editor
-{
-	sf::Texture SpriteCreator::CreateSprite(const char* spritePath, const unsigned int spriteIndex)
-	{
+namespace editor {
+	sf::Texture SpriteCreator::CreateSprite(const char* spritePath, const unsigned int spriteIndex)	{
 		const unsigned int t_col = spriteIndex % m_tileSheetLength;
 		const unsigned int t_row = spriteIndex / m_tileSheetLength;
 
@@ -20,8 +18,7 @@ namespace editor
 		return t_texture;
 	}
 
-	void SpriteCreator::CreateSprite(const char* spritePath, sf::Vector2u spriteIndex, const sf::Vector2i& spriteSize, const char& id)
-	{
+	void SpriteCreator::CreateSprite(const char* spritePath, sf::Vector2u spriteIndex, const sf::Vector2i& spriteSize, const char& id) {
 		const sf::Vector2f t_spriteSize = sf::Vector2f(globals::TILE_SIZE, globals::TILE_SIZE);
 		int t_spriteIndex = (spriteIndex.y * globals::TILE_SIZE) + spriteIndex.x;
 
@@ -55,8 +52,7 @@ namespace editor
 		m_sprites.push_back(std::move(t_sprite));
 	}
 
-	const universal::Sprite& SpriteCreator::getSpriteById(const char& id) const
-	{
+	const universal::Sprite& SpriteCreator::getSpriteById(const char& id) const {
 		for (auto& t_sprite : m_sprites) {
 			if (t_sprite->getId() == id) {
 				return *t_sprite;

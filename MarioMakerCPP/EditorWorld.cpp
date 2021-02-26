@@ -7,8 +7,7 @@ namespace editor
 {
 	EditorWorld::EditorWorld(const sf::Vector2i& resolution,
 		const sf::Vector2i& position,
-		const char* windowName)
-	{
+		const char* windowName) {
 		m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(resolution.x, resolution.y), windowName);
 		m_window->setPosition(position);
 
@@ -21,6 +20,7 @@ namespace editor
 		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(14, 0), sf::Vector2i(2, 2), '6');
 
 		m_spriteCreator->CreateSprite(globals::BG_TILESHEET_PATH, sf::Vector2u(1, 12), sf::Vector2i(2, 2), 'a');
+		//m_spriteCreator->CreateSprite(globals::BG_TILESHEET_PATH, sf::Vector2u(1, 4), sf::Vector2i(globals::TILE_SIZE, 8), 'A');
 
 		m_tileSelectorWindow = std::make_unique<TileSelectorWindow>(*m_spriteCreator,
 			sf::Vector2i(200, 720),
@@ -38,12 +38,12 @@ namespace editor
 
 		if (m_loadLevel == true) {
 			m_IOHandler.loadGrid(*m_spriteCreator, *m_grid, "MarioLevel1.txt");
-			//m_grid->clearGrid();
 		}
+
+		m_background = std::make_unique<editor::Background>(globals::BG_TILESHEET_PATH);
 	}
 
-	void EditorWorld::eventHandler()
-	{
+	void EditorWorld::eventHandler() {
 		if (m_window->pollEvent(m_event) == true) {
 			if (m_event.type == sf::Event::Closed) {
 				m_window->close();
@@ -65,6 +65,10 @@ namespace editor
 					sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), *m_window);
 					m_grid->addSpriteAtPosition(m_tileSelectorWindow->getSelected(), t_mousePos);
 				}
+
+				if (&m_bgSelectorWindow->getSelected() != nullptr) {
+					printf("Selected BG\n");
+				}
 			}
 		}
 		else if (sf::Mouse::isButtonPressed(sf::Mouse::Right) == true) {
@@ -75,11 +79,11 @@ namespace editor
 		}
 	}
 
-	void EditorWorld::render()
-	{
+	void EditorWorld::render() {
 		m_window->clear();
 
 		//Render things here, between the clear and display.
+		m_background->render(*m_window);
 		m_tileSelectorWindow->render(*m_window);
 		m_bgSelectorWindow->render(*m_window);
 		m_grid->render(*m_window);
@@ -87,8 +91,7 @@ namespace editor
 		m_window->display();
 	}
 
-	bool EditorWorld::gameRunning()
-	{
+	bool EditorWorld::gameRunning() {
 		return m_gameRunning;
 	}
 }

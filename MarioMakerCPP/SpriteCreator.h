@@ -4,10 +4,8 @@
 #include "SFML/System/Vector2.hpp"
 #include "Sprite.h"
 
-namespace editor
-{
-	class SpriteCreator
-	{
+namespace editor {
+	class SpriteCreator {
 	private:
 		std::vector<std::unique_ptr<universal::Sprite>> m_sprites;
 

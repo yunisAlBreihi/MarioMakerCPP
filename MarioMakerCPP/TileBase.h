@@ -3,10 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "IRender.h"
 
-namespace universal
-{
-	class TileBase : public universal::IRender
-	{
+namespace universal {
+	class TileBase : public universal::IRender {
 	private:
 		std::unique_ptr<sf::RectangleShape> m_body = nullptr;
 

@@ -3,10 +3,8 @@
 #include <fstream>
 #include "globals.h"
 
-namespace editor
-{
-	void IOHandler::saveGrid(universal::Grid& gridToSaveTo, const char* filename)
-	{
+namespace editor {
+	void IOHandler::saveGrid(universal::Grid& gridToSaveTo, const char* filename) {
 		std::ofstream t_myFile;
 		t_myFile.open(filename);
 
@@ -27,8 +25,7 @@ namespace editor
 		}
 	}
 
-	void IOHandler::loadGrid(const editor::SpriteCreator& spriteCreator, universal::Grid& grid, const char* filename)
-	{
+	void IOHandler::loadGrid(const editor::SpriteCreator& spriteCreator, universal::Grid& grid, const char* filename) {
 		universal::Grid t_grid = universal::Grid(globals::EDITOR_RESOLUTION);
 
 		std::ifstream t_myFile;

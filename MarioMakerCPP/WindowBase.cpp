@@ -1,19 +1,16 @@
 #include "WindowBase.h"
 
-namespace editor 
-{
+namespace editor {
 	WindowBase::WindowBase(const SpriteCreator& spriteCreator,
 						   const sf::Vector2i& resolution,
 						   const sf::Vector2i& position,
-						   const char* windowName)
-	{
+						   const char* windowName) {
 		m_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(resolution.x, resolution.y), windowName);
 		m_window->setPosition(position);
 		m_grid = std::make_unique<universal::Grid>(resolution);
 	}
 
-	void WindowBase::eventHandler()
-	{
+	void WindowBase::eventHandler()	{
 		if (m_window->pollEvent(m_event) == true) {
 			if (m_event.type == sf::Event::Closed) {
 				m_window->close();
@@ -32,8 +29,7 @@ namespace editor
 		}
 	}
 
-	void WindowBase::render(sf::RenderWindow& window)
-	{
+	void WindowBase::render(sf::RenderWindow& window) {
 		m_window->clear(globals::GRAY);
 
 		//Render things here
@@ -42,8 +38,7 @@ namespace editor
 		m_window->display();
 	}
 
-	const bool WindowBase::selectTile(universal::TileBase* tile)
-	{
+	const bool WindowBase::selectTile(universal::TileBase* tile) {
 		const sf::Vector2i t_localMousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), *m_window);
 		const sf::Vector2f t_tilePos = tile->getPosition();
 		const sf::Vector2f t_tileSize = tile->getSize();
@@ -59,13 +54,11 @@ namespace editor
 		return false;
 	}
 
-	const universal::TileBase& WindowBase::getCurrentSelection() const
-	{
+	const universal::TileBase& WindowBase::getCurrentSelection() const {
 		return *m_currentSelection;
 	}
 
-	const universal::Sprite& WindowBase::getSelected() const
-	{
+	const universal::Sprite& WindowBase::getSelected() const {
 		return *m_selected;
 	}
 }

@@ -1,13 +1,11 @@
 #include "TileSelectorWindow.h"
 #include "globals.h"
 
-namespace editor
-{
+namespace editor {
 	TileSelectorWindow::TileSelectorWindow(const SpriteCreator& spriteCreator,
 		const sf::Vector2i& resolution,
 		const sf::Vector2i& position,
-		const char* windowName) : WindowBase(spriteCreator, resolution, position, windowName)
-	{
+		const char* windowName) : WindowBase(spriteCreator, resolution, position, windowName) {
 		m_grid->addSprite(spriteCreator.getSpriteById('0'));
 		m_grid->addSprite(spriteCreator.getSpriteById('1'));
 		m_grid->addSprite(spriteCreator.getSpriteById('3'));
