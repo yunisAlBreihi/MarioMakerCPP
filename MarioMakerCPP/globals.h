@@ -6,6 +6,10 @@ namespace globals {
 	static const unsigned int TILE_SIZE = 32;
 	static const unsigned int BG_SIZE = 32 * 30;
 
+	static const char* TILE_TILESHEET_PATH = "Sprites/SMB_tiles_tilesheet.png";
+	static const char* BG_TILESHEET_PATH = "Sprites/SMB_backgrounds_tilesheet_v2.png";
+	static const char* BG_THUMBNAILS_PATH = "Sprites/SMB_backgrounds_thumbnails.png";
+
 	static const sf::Vector2i EDITOR_RESOLUTION = sf::Vector2i(1280, 720);
 	static const sf::Vector2i TILESELECTOR_RESOLUTION = sf::Vector2i(200, 700);
 
@@ -13,8 +17,8 @@ namespace globals {
 	static const sf::Color UNHIGHLIGHTED_COLOR = sf::Color(0,0,0,255);
 	static const sf::Color HIGHLIGHTED_COLOR = sf::Color(255,0,0,255);
 
-	static const char* TILE_TILESHEET_PATH = "Sprites/SMB_tiles_tilesheet.png";
-	static const char* BG_TILESHEET_PATH = "Sprites/SMB_backgrounds_tilesheet_v2.png";
+	const float BG_SPRITE_OFFSET_X = 515.0f;
+	const float BG_SPRITE_OFFSET_Y = 174.0f;
 
 	template<typename T>
 	using Vector2D = std::vector<std::vector<T>>;

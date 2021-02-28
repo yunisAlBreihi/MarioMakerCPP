@@ -13,4 +13,9 @@ namespace editor {
 		m_grid->addSprite(spriteCreator.getSpriteById('5'));
 		m_grid->addSprite(spriteCreator.getSpriteById('6'));
 	}
+
+	void TileSelectorWindow::onSelection()
+	{
+		printf("Selected in TileSelector");
+	}
 }

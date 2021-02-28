@@ -35,9 +35,6 @@ namespace editor {
 		const float m_seperator = 1.0f;
 		const float m_topRibbon = 10.0f;
 		const float m_tileOffset = 9.0f;
-
-		const float m_backgroundTypeSizeX = 515.0f;
-		const float m_backgroundTypeSizeY = 174.0f;
 		
 	public:
 		Background(const char* filepath);

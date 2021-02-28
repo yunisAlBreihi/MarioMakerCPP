@@ -23,6 +23,8 @@ namespace editor {
 
 					if (t_sprite != nullptr) {
 						m_selected = std::make_unique<universal::Sprite>(*t_sprite);
+
+						onSelection();
 					}
 				}
 			}

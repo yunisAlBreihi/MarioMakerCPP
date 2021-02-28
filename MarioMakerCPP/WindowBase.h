@@ -31,5 +31,7 @@ namespace editor {
 		const bool selectTile(universal::TileBase* tile);
 		const universal::TileBase& getCurrentSelection() const;
 		const universal::Sprite& getSelected() const;
+
+		virtual void onSelection() = 0;
 	};
 }

@@ -19,15 +19,22 @@ namespace editor
 		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(15, 7), sf::Vector2i(1, 1), '5');
 		m_spriteCreator->CreateSprite(globals::TILE_TILESHEET_PATH, sf::Vector2u(14, 0), sf::Vector2i(2, 2), '6');
 
-		m_spriteCreator->CreateSprite(globals::BG_TILESHEET_PATH, sf::Vector2u(1, 12), sf::Vector2i(2, 2), 'a');
-		//m_spriteCreator->CreateSprite(globals::BG_TILESHEET_PATH, sf::Vector2u(1, 4), sf::Vector2i(globals::TILE_SIZE, 8), 'A');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(1, 0), sf::Vector2i(2, 2), 'a');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(6, 0), sf::Vector2i(2, 2), 'b');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(10, 0), sf::Vector2i(2, 2), 'c');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(14, 0), sf::Vector2i(2, 2), 'd');
 
-		m_tileSelectorWindow = std::make_unique<TileSelectorWindow>(*m_spriteCreator,
+		m_background = std::make_unique<editor::Background>(globals::BG_TILESHEET_PATH);
+
+		m_tileSelectorWindow = std::make_unique<TileSelectorWindow>(
+			*m_spriteCreator,
 			sf::Vector2i(200, 720),
 			sf::Vector2i(position.x + resolution.x, position.y),
 			"Tile Selector");
 
-		m_bgSelectorWindow = std::make_unique<BGSelectorWindow>(*m_spriteCreator,
+		m_bgSelectorWindow = std::make_unique<BGSelectorWindow>(
+			*m_spriteCreator,
+			*m_background,
 			sf::Vector2i(200, 720),
 			sf::Vector2i(position.x - 200, position.y),
 			"Background Selector");
@@ -40,7 +47,6 @@ namespace editor
 			m_IOHandler.loadGrid(*m_spriteCreator, *m_grid, "MarioLevel1.txt");
 		}
 
-		m_background = std::make_unique<editor::Background>(globals::BG_TILESHEET_PATH);
 	}
 
 	void EditorWorld::eventHandler() {
@@ -59,15 +65,15 @@ namespace editor
 			m_tileSelectorWindow->eventHandler();
 		}
 
+		if (m_bgSelectorWindow != nullptr) {
+			m_bgSelectorWindow->eventHandler();
+		}
+
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true) {
 			if (globals::isPositionInWindow(sf::Mouse::getPosition(), *m_window) == true) {
 				if (&m_tileSelectorWindow->getSelected() != nullptr) {
 					sf::Vector2i t_mousePos = globals::getPositionInWindow(sf::Mouse::getPosition(), *m_window);
 					m_grid->addSpriteAtPosition(m_tileSelectorWindow->getSelected(), t_mousePos);
-				}
-
-				if (&m_bgSelectorWindow->getSelected() != nullptr) {
-					printf("Selected BG\n");
 				}
 			}
 		}

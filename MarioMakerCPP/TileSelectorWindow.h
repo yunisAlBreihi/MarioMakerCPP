@@ -8,6 +8,8 @@ namespace editor {
 						   const sf::Vector2i& resolution,
 						   const sf::Vector2i& position,
 						   const char* windowName);
+
+		void onSelection() override;
 	};
 }
 

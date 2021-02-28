@@ -48,63 +48,63 @@ namespace editor {
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::Desert:
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f);
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f);
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::Water:
-				t_rectPos.x = m_backgroundTypeSizeX;
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f);
+				t_rectPos.x = globals::BG_SPRITE_OFFSET_X;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f);
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::Inside:
-				t_rectPos.x = m_backgroundTypeSizeX;
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f) * 2.0f;
+				t_rectPos.x = globals::BG_SPRITE_OFFSET_X;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f) * 2.0f;
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::Snow:
-				t_rectPos.y += (m_backgroundTypeSizeY -1.0f) * 3.0f;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y -1.0f) * 3.0f;
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::Sky:
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f) * 4.0f;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f) * 4.0f;
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::Forest:
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f + m_bgTileSize) * 5.0f;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f + m_bgTileSize) * 5.0f;
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::Night:
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f) * 7.0f;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f) * 7.0f;
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::WaterNight:
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f) * 8.0f;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f) * 8.0f;
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::SnowNight:
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f) * 11.0f;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f) * 11.0f;
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
 				break;
 			case editor::BackgroundType::GhostHouseNight:
-				t_rectPos.y += (m_backgroundTypeSizeY - 1.0f) * 12.0f;
+				t_rectPos.y += (globals::BG_SPRITE_OFFSET_Y - 1.0f) * 12.0f;
 				t_rect = { t_rectPos , t_rectSize };
 				t_texture->loadFromFile(m_filePath, t_rect);
 				t_body->setTexture(t_texture);
