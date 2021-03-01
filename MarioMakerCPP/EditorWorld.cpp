@@ -23,6 +23,16 @@ namespace editor
 		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(6, 0), sf::Vector2i(2, 2), 'b');
 		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(10, 0), sf::Vector2i(2, 2), 'c');
 		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(14, 0), sf::Vector2i(2, 2), 'd');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(14, 0), sf::Vector2i(2, 2), 'e');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(14, 0), sf::Vector2i(2, 2), 'f');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(1, 2), sf::Vector2i(2, 2), 'g');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(6, 2), sf::Vector2i(2, 2), 'h');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(10, 2), sf::Vector2i(2, 2), 'i');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(14, 2), sf::Vector2i(2, 2), 'j');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(14, 2), sf::Vector2i(2, 2), 'k');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(1, 4), sf::Vector2i(2, 2), 'l');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(6, 4), sf::Vector2i(2, 2), 'm');
+		m_spriteCreator->CreateSprite(globals::BG_THUMBNAILS_PATH, sf::Vector2u(10, 4), sf::Vector2i(2, 2), 'n');
 
 		m_background = std::make_unique<editor::Background>(globals::BG_TILESHEET_PATH);
 
