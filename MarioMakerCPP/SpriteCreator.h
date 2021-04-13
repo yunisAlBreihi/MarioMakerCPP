@@ -5,6 +5,24 @@
 #include "Sprite.h"
 
 namespace editor {
+	enum class  SpriteType 
+	{
+		Ground,
+		Desert,
+		Water,
+		Underground,
+		GhostHouse,
+		Castle,
+		Snow,
+		Airship,
+		Forest,
+		GroundNight,
+		AirshipNight,
+		WaterNight,
+		SnowNight,
+		GhostHouseNight,
+	};
+
 	class SpriteCreator {
 	private:
 		std::vector<std::unique_ptr<universal::Sprite>> m_sprites;
@@ -19,5 +37,7 @@ namespace editor {
 		void CreateSprite(const char* spritePath, sf::Vector2u spriteIndex, const sf::Vector2i& spriteSize, const char& id);
 
 		const universal::Sprite& getSpriteById(const char& id) const;
+
+		void changeSprite(SpriteType type);
 	};
 }

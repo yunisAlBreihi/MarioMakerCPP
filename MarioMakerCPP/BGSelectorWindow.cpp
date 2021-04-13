@@ -94,7 +94,7 @@ namespace editor {
 		}
 		else if (m_selected->getId() == 'n')
 		{
-			printf("Selected AirshipNight\n");
+			printf("Selected GhostHouseNight\n");
 			m_background.changeBackground(BackgroundType::GhostHouseNight);
 		}
 	}

@@ -60,4 +60,13 @@ namespace editor {
 		}
 		return NULL;
 	}
+
+	void SpriteCreator::changeSprite(SpriteType type)
+	{
+		//for (auto& t_sprite : m_sprites) {
+		//	sf::Texture t_texture;
+		//	sf::IntRect t_rect = { sf::Vector2i(t_colIndex, t_rowIndex), sf::Vector2i(m_tileSize, m_tileSize) };
+		//	t_texture.loadFromFile(spritePath, t_rect);
+		//}
+	}
 }
